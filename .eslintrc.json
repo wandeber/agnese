@@ -207,7 +207,7 @@
     "no-script-url": "error",
     "no-self-compare": "error",
     "no-sequences": "error",
-    "no-shadow": "error",
+    "no-shadow": "off",
     "no-spaced-func": "error",
     "no-sync": "off",
     "no-tabs": "error",
@@ -222,14 +222,7 @@
     "no-unneeded-ternary": "error",
     "no-unreachable-loop": "error",
     "no-unused-expressions": "error",
-    "no-use-before-define": [
-      "error",
-      {
-        "functions": true,
-        "classes": false,
-        "variables": true
-      }
-    ],
+    "no-use-before-define": "off",
     "no-useless-backreference": "error",
     "no-useless-call": "error",
     "no-useless-computed-key": "error",
