@@ -27,7 +27,7 @@ Save thouthands of lines in mappings.
 
 We will use the next source data in the examples throughout this document:
 
-```json
+```javascript
 const sourceData = {
   name: "Gohan",
   surname: "Son",
@@ -85,9 +85,9 @@ One of the most awesome things about this module is you can keep all your mappin
 }
 ```
 
-##### JS code to map from JSONC file
+##### JSavaScript code to map from JSONC file
 
-```js
+```javascript
 let mapper = new Agnese();
 mapper.setMapInfo(Path.join("map-info.jsonc");
 let target = mapper.map(sourceData);
