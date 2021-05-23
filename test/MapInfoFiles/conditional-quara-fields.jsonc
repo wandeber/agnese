@@ -1,0 +1,23 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "surname",
+      "if": {
+        "quara": "surname == \"Son\""
+      },
+      "value": {
+        "fromPath": "surname"
+      }
+    },
+    {
+      "name": "name",
+      "if": {
+        "quara": "name == \"Goku\""
+      },
+      "value": {
+        "fromPath": "name"
+      }
+    }
+  ]
+}

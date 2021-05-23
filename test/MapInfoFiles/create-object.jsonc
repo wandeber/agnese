@@ -1,0 +1,11 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "parent",
+      "value": {
+        "default": "Son Goku"
+      }
+    }
+  ]
+}

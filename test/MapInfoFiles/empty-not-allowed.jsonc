@@ -1,0 +1,21 @@
+{
+  "type": "Array",
+  "allowEmpty": false,
+  "items": [
+    {
+      "type": "Object",
+      "allowEmpty": false,
+      "fields": []
+    },
+    {
+      "type": "Array",
+      "allowEmpty": false,
+      "items": []
+    },
+    {
+      "type": "String",
+      "allowEmpty": false,
+      "items": []
+    }
+  ]
+}

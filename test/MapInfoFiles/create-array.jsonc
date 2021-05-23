@@ -1,0 +1,15 @@
+{
+  "type": "Array",
+  "items": [
+    {
+      "value": {
+        "fromPath": "alias.0"
+      }
+    },
+    {
+      "value": {
+        "fromPath": "alias.3"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "message",
+      "if": {},
+      "value": {
+        "default": "Included"
+      }
+    }
+  ]
+}

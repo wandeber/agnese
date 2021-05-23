@@ -1,0 +1,66 @@
+{
+  "name": "agnese",
+  "version": "0.0.1",
+  "description": "This project will help you to map data easily based on a configuration.",
+  "license": "MIT",
+  "keywords": [
+    "map",
+    "map data",
+    "mapper",
+    "mapping",
+    "mappings",
+    "data mapper",
+    "data-mapper",
+    "object mapper",
+    "object-mapper",
+    "map array",
+    "loop",
+    "open",
+    "open source",
+    "agnese"
+  ],
+  "author": "Bernardo A. Siverio (wandeber)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "./LICENSE",
+    "./dist/",
+    "./other-dependencies"
+  ],
+  "scripts": {
+    "rebuild": "npm run clean && npm run build",
+    "build": "npm run build-tsc && npm run check",
+    "build-prod": "npm run build && npm run check",
+    "preversion": "npm run check",
+    "check": "npm test && npm run lint",
+    "clean": "rm -r ./dist",
+    "build-tsc": "npx tsc -p ./tsconfig.json",
+    "lint": "npx eslint ./src/**/*.ts",
+    "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
+    "pkgfiles": "npx pkgfiles",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check"
+    }
+  },
+  "engines": {
+    "node": ">=14.17.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "^15.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.27.0",
+    "husky": "^6.0.0",
+    "jest": "^26.4.0",
+    "ts-jest": "^26.2.0",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.2.4"
+  },
+  "optionalDependencies": {
+    "jsonc": "^2.0.0"
+  }
+}

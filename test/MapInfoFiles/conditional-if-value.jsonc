@@ -1,0 +1,27 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "message",
+      "if": {
+        "value": {
+          "fromPath": "isAlive"
+        }
+      },
+      "value": {
+        "default": "He's alive!"
+      }
+    },
+    {
+      "name": "message",
+      "if": {
+        "value": {
+          "fromPath": "isDeath"
+        }
+      },
+      "value": {
+        "default": "Oh, no!"
+      }
+    }
+  ]
+}

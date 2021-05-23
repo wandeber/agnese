@@ -1,0 +1,23 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "surname",
+      "if": {
+        "exists": "surname"
+      },
+      "value": {
+        "fromPath": "surname"
+      }
+    },
+    {
+      "name": "lastname",
+      "if": {
+        "exists": "lastname"
+      },
+      "value": {
+        "fromPath": "surname"
+      }
+    }
+  ]
+}

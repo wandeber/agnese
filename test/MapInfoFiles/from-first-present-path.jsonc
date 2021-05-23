@@ -1,0 +1,15 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "name",
+      "value": {
+        "fromFirstPresentPath": [
+          "fullname",
+          "lastname",
+          "name"
+        ]
+      }
+    }
+  ]
+}

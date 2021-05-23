@@ -1,0 +1,6 @@
+{
+  "type": "Integer",
+  "value": {
+    "fromPath": "characteristics.height"
+  }
+}

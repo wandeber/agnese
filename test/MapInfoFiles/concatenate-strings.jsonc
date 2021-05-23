@@ -1,0 +1,25 @@
+{
+  "type": "String",
+  "items": [
+    {
+      "value": {
+        "default": "Son"
+      }
+    },
+    {
+      "value": {
+        "default": " "
+      }
+    },
+    {
+      "value": {
+        "default": "Gohan"
+      }
+    },
+    {
+      "value": {
+        "default": " is the best warrior."
+      }
+    }
+  ]
+}

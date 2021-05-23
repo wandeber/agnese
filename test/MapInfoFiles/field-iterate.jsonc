@@ -1,0 +1,26 @@
+{
+  "type": "Array",
+  "iterate": {
+    "each": "transformations",
+    "as": "element",
+    "keyName": "index",
+    "do": {
+      "type": "Object",
+      "fields": [
+        {
+          "type": "Number",
+          "name": "number",
+          "value": {
+            "fromPath": "index"
+          }
+        },
+        {
+          "name": "transformationName",
+          "value": {
+            "fromPath": "element.name"
+          }
+        }
+      ]
+    }
+  }
+}
