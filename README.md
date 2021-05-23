@@ -64,7 +64,7 @@ const sourceData = {
 
 #### Simple mapping example:
 
-One of the most awesome things about this module is you can keep all your mapping info in a 
+One of the most awesome things about this module is you can keep all your mapping info in a separate JSON file.
 
 ##### map-info.jsonc
 
