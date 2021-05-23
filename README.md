@@ -5,7 +5,7 @@ Save thouthands of lines in mappings.
 ## Table of Contents
 
 - [Features](#features)
-- [First quick example](#first-quick-example)
+- [Getting started](#getting-started)
 - [Easy CSV generation](#easy-csv-generation)
 - [License](#license)
 
@@ -66,7 +66,7 @@ const sourceData = {
 
 One of the most awesome things about this module is you can keep all your mapping info in a separate JSON file.
 
-##### map-info.jsonc
+##### map-info.json
 
 ```json
 {
@@ -85,11 +85,11 @@ One of the most awesome things about this module is you can keep all your mappin
 }
 ```
 
-##### JSavaScript code to map from JSONC file
+##### JSavaScript code to map from JSON file
 
 ```javascript
 let mapper = new Agnese();
-mapper.setMapInfo(Path.join("map-info.jsonc");
+mapper.setMapInfo("map-info.json");
 let target = mapper.map(sourceData);
 ```
 
