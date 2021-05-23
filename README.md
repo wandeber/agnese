@@ -18,6 +18,8 @@ Save thouthands of lines in mappings.
 - [x] Possibility of define a default value for a field.
 - [x] Assign values by their paths in source data.
 - [x] Force types and casting.
+- [x] JSONC optional support.
+- [ ] YAML optional support.
 - [ ] Use of custom functions to preprocess values before assign them.
 - [ ] Conditional value.
 
