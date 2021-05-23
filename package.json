@@ -33,11 +33,10 @@
     "build-prod": "npm run build && npm run check",
     "preversion": "npm run check",
     "check": "npm test && npm run lint",
-    "clean": "rm -r ./dist",
+    "clean": "rm -rf ./dist",
     "build-tsc": "npx tsc -p ./tsconfig.json",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
-    "pkgfiles": "npx pkgfiles",
     "prepublish": "npm run clean && npm run build"
   },
   "husky": {
