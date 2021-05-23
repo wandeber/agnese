@@ -5,7 +5,7 @@ Save thouthands of lines in mappings.
 ## Table of Contents
 
 - [Features](#features)
-- [First quick example](#first-quick-example)
+- [Getting started](#getting-started)
 - [Easy CSV generation](#easy-csv-generation)
 - [License](#license)
 
