@@ -30,7 +30,7 @@ Save thouthands of lines in mappings.
 
 ## Installation
 
-At the moment, this module is available as an [NPM](https://www.npmjs.com/package/agnese) package:
+Agnese is available as an [NPM](https://www.npmjs.com/package/agnese) package:
 
 ```bash
 npm install agnese
