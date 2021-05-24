@@ -14,8 +14,6 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm test
-      - run: npm run build
-      - run: ls -la
 
   publish-gpr:
     needs: build
@@ -30,8 +28,25 @@ jobs:
           node-version: 14
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - run: ls -la
-      - run: npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  
+  publish-npm-registry:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run gen-dist-npm
+      - run: cd dist-npm
+      - run: npm publish
+        env:
+          NPM_REGISTRY_TOKEN: ${{secrets.NPM_REGISTRY_TOKEN}}

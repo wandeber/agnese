@@ -1,5 +1,6 @@
-# Built .ts files:
+# Builds:
 dist/
+dist-npm/
 
 # Dependency directory:
 node_modules/
