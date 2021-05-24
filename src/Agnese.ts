@@ -1,5 +1,6 @@
 import * as FS from "fs";
 import MapInfo, {MapInfoBase} from "./MapInfo";
+import { FieldType } from "./Types";
 
 // Optional dependency.
 // TODO: Look for a maintained alternative.
@@ -17,10 +18,15 @@ catch {}
 
 
 export default class Agnese {
+  MapInfo = MapInfo;
+  
+  FieldType = FieldType;
+
   preprocessors: any;
 
   /** @type {MapInfo} */
   mapInfo?: MapInfo;
+
   
 
   /**

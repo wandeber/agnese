@@ -1,7 +1,7 @@
 import FieldValue, {FieldValueBase} from "./FieldValue";
 import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator";
 import ProcessIf, {ProcessIfBase} from "./ProcessIf";
-import {FieldType} from "./MapTypes";
+import {FieldType} from "./Types";
 import {Preprocessable} from "./PreprocessorManager";
 
 
