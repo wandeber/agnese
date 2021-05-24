@@ -1,4 +1,4 @@
-# [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wandeber/agnese/blob/master/LICENSE) [![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese) [![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions) [![Coverage Status](https://coveralls.io/repos/github/wandeber/agnese/badge.svg?branch=master)](https://coveralls.io/github/wandeber/agnese?branch=master)
+# [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wandeber/agnese/blob/main/LICENSE) [![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese) [![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions) [![Coverage Status](https://coveralls.io/repos/github/wandeber/agnese/badge.svg?branch=main)](https://coveralls.io/github/wandeber/agnese?branch=main)
 
 Save thouthands of lines in mappings.
 
@@ -130,4 +130,4 @@ If you think on CSV as an object with one unique level, you can easily map any d
 
 ## License
 
-[MIT © Bernardo Alemán Siverio](https://github.com/wandeber/agnese/blob/master/LICENSE)
+[MIT © Bernardo Alemán Siverio](https://github.com/wandeber/agnese/blob/main/LICENSE)
