@@ -1,5 +1,5 @@
 import * as Path from "path";
-import Agnese from "../src/Agnese";
+import Agnese from "../src/index";
 import MapInfo from "../src/MapInfo";
 
 
