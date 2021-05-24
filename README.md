@@ -1,10 +1,13 @@
-# Agnese
+# [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wandeber/agnese/blob/master/LICENSE) [![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese) [![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions)
 
 Save thouthands of lines in mappings.
+
+> :warning: **Please, don't use this project on production until we release version 1.0.0. Agnese is taking shape and we could introduce incompatibilities or change our mind regarding certain features**.
 
 ## Table of Contents
 
 - [Features](#features)
+- [Installation](#installation)
 - [Getting started](#getting-started)
 - [Easy CSV generation](#easy-csv-generation)
 - [License](#license)
@@ -24,6 +27,20 @@ Save thouthands of lines in mappings.
 - [ ] Conditional value.
 
 > *Quara is a simple JS interpreted language that will be available soon as a separate module.
+
+## Installation
+
+Agnese is available as an [NPM](https://www.npmjs.com/package/agnese) package:
+
+```bash
+npm install agnese
+```
+
+If you prefer download it from [Github Packages](https://github.com/wandeber/agnese/packages/807391) (take a look at the [documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)):
+
+```bash
+npm install @wandeber/agnese
+```
 
 ## Getting started
 
@@ -113,4 +130,4 @@ If you think on CSV as an object with one unique level, you can easily map any d
 
 ## License
 
-[MIT © Bernardo Alemán Siverio](LICENSE)
+[MIT © Bernardo Alemán Siverio](https://github.com/wandeber/agnese/blob/master/LICENSE)
