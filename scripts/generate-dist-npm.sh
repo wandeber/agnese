@@ -9,4 +9,4 @@ cp -f LICENSE dist-npm/
 cp -f README.md dist-npm/
 
 echo "\n//registry.npmjs.org/:_authToken=\${NPM_REGISTRY_TOKEN}" >> dist-npm/.npmrc
-sed -i '' 's!@wandeber\/agnese!agnese!g' dist-npm/package*.json
+sed 's!@wandeber\/agnese!agnese!g' dist-npm/package*.json -i ''
