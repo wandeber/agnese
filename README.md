@@ -1,8 +1,8 @@
 # Agnese
 
-![release-package](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)
-![version](https://img.shields.io/github/package-json/v/wandeber/agnese)
-![size](https://img.shields.io/bundlephobia/min/agnese)
+[![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions)
+[![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese)
+[![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese)
 
 Save thouthands of lines in mappings.
 
