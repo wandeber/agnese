@@ -59,8 +59,7 @@
     "build-tsc": "npx tsc -p ./tsconfig.json",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
-    "gen-dist-npm": "./scripts/generate-dist-npm.sh",
-    "prepublish": "npm run rebuild"
+    "gen-dist-npm": "./scripts/generate-dist-npm.sh"
   },
   "husky": {
     "hooks": {
