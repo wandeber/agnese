@@ -2,9 +2,12 @@
 
 Save thouthands of lines in mappings.
 
+> :warning: **Please, don't use this project on production until we release version 1.0.0. Agnese is taking shape and we could introduce incompatibilities or change our mind regarding certain features**.
+
 ## Table of Contents
 
 - [Features](#features)
+- [Installation](#installation)
 - [Getting started](#getting-started)
 - [Easy CSV generation](#easy-csv-generation)
 - [License](#license)
@@ -24,6 +27,20 @@ Save thouthands of lines in mappings.
 - [ ] Conditional value.
 
 > *Quara is a simple JS interpreted language that will be available soon as a separate module.
+
+## Installation
+
+At the moment, this module is available as an [NPM](https://www.npmjs.com/package/agnese) package:
+
+```bash
+npm install agnese
+```
+
+If you prefer download it from [Github Packages](https://github.com/wandeber/agnese/packages/807391) (take a look at the [documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)):
+
+```bash
+npm install @wandeber/agnese
+```
 
 ## Getting started
 
