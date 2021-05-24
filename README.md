@@ -2,7 +2,7 @@
 
 Save thouthands of lines in mappings.
 
-> :warning: **Please, don't use this project on production until we release version 1.0.0. Agnese is taking shape and we could introduce incompatibilities or change our mind regarding certain features**.
+> :warning: **Please, don't use this project on production until we release the first stable version. Agnese is taking shape and we could introduce incompatibilities without previous warning or change our mind regarding certain features**.
 
 ## Table of Contents
 
@@ -24,9 +24,9 @@ Save thouthands of lines in mappings.
 - [x] JSONC optional support.
 - [ ] YAML optional support.
 - [ ] Use of custom functions to preprocess values before assign them.
-- [ ] Conditional value.
+- [ ] Conditional values.
 
-> *Quara is a simple JS interpreted language that will be available soon as a separate module.
+> *Quara is a simple JavaScript interpreted language that will be available soon as a separate module.
 
 ## Installation
 
@@ -104,7 +104,7 @@ One of the most awesome things about this module is you can keep all your mappin
 }
 ```
 
-##### JSavaScript code to map from JSON file
+##### JavaScript code to map from JSON file
 
 ```javascript
 let mapper = new Agnese();
