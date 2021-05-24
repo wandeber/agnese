@@ -40,6 +40,7 @@
     "@types/node": "^15.6.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
+    "coveralls": "^3.1.0",
     "eslint": "^7.27.0",
     "husky": "^6.0.0",
     "jest": "^26.4.0",
@@ -59,6 +60,7 @@
     "build-tsc": "npx tsc -p ./tsconfig.json",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
+    "coveralls": "npm run test && cat ./coverage/lcov.info | coveralls",
     "gen-dist-npm": "./scripts/generate-dist-npm.sh"
   },
   "husky": {
