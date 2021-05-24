@@ -1,8 +1,8 @@
 # Agnese
 
+![release-package](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)
 ![version](https://img.shields.io/github/package-json/v/wandeber/agnese)
 ![size](https://img.shields.io/bundlephobia/min/agnese)
-![dependencies](https://img.shields.io/david/wandeber/agnese)
 
 Save thouthands of lines in mappings.
 
