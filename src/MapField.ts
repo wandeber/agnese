@@ -1,12 +1,13 @@
 import FieldValue, {FieldValueBase} from "./FieldValue";
 import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator";
 import ProcessIf, {ProcessIfBase} from "./ProcessIf";
+import Preprocessable, {PreprocessableBase} from "./Preprocessable";
 import {FieldType} from "./Types";
-import {Preprocessable} from "./PreprocessorManager";
+import Agnese from "./Agnese";
 
 
 
-export interface ItemBase {
+export interface ItemBase extends PreprocessableBase {
   type?: FieldType;
   fields?: ItemBase[];
   items?: ItemBase[];
@@ -42,8 +43,8 @@ export class MapItem extends Preprocessable implements ItemBase {
    public allowEmpty? = true;
 
 
-  constructor(obj: ItemBase) {
-    super(obj);
+  constructor(obj: ItemBase, public agnese: Agnese) {
+    super(obj, agnese);
     
     if (obj.type !== undefined) {
       this.type = obj.type as FieldType;
@@ -56,27 +57,27 @@ export class MapItem extends Preprocessable implements ItemBase {
     if (Array.isArray(obj.fields)) {
       this.fields = [];
       for (const mapField of obj.fields) {
-        this.fields.push(new MapField(mapField));
+        this.fields.push(new MapField(mapField, this.agnese));
       }
     }
 
     if (Array.isArray(obj.items)) {
       this.items = [];
       for (const mapItem of obj.items) {
-        this.items.push(new MapItem(mapItem));
+        this.items.push(new MapItem(mapItem, this.agnese));
       }
     }
     
     if (obj.if !== undefined) {
-      this.if = new ProcessIf(obj.if);
+      this.if = new ProcessIf(obj.if, this.agnese);
     }
 
     if (obj.value !== undefined) {
-      this.value = new FieldValue(obj.value);
+      this.value = new FieldValue(obj.value, this.agnese);
     }
 
     if (obj.iterate !== undefined) {
-      this.iterate = new MapProcessIterator(obj.iterate);
+      this.iterate = new MapProcessIterator(obj.iterate, this.agnese);
     }
   }
 
@@ -107,13 +108,15 @@ export class MapItem extends Preprocessable implements ItemBase {
       }
     }
     
-    // If a preprocessor is defined, it will be used in any case.
-    if (this.getPreprocessor() && typeof this.preprocessorFn === "function") {
-      //let extraArguments = this.getPreprocessorExtraArguments(mapFieldInfo.preprocessor);
-      result = this.preprocessorFn(result/*, ...extraArguments*/);
-    }
+    result = this.preprocess(sourceData, result);
 
     // Force desired type:
+    result = this.assureType(result);
+
+    return result;
+  }
+
+  protected assureType(result: any) {
     if (result != undefined) {
       switch (this.type) {
         case FieldType.Integer: result = parseInt(result); break;
@@ -124,7 +127,6 @@ export class MapItem extends Preprocessable implements ItemBase {
         default: break;
       }
     }
-
     return result;
   }
 
@@ -187,8 +189,8 @@ export class MapItem extends Preprocessable implements ItemBase {
 export default class MapField extends MapItem implements FieldBase {
   public name?: string;
 
-  constructor(obj: FieldBase) {
-    super(obj);
+  constructor(obj: FieldBase, public agnese: Agnese) {
+    super(obj, agnese);
 
     if (obj.name !== undefined) {
       this.name = obj.name;

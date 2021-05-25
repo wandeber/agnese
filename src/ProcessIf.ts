@@ -1,6 +1,8 @@
 const Quara = require("../other-dependencies/quara").default;
+import Agnese from "./Agnese";
 import FieldValue, {FieldValueBase} from "./FieldValue";
 import MapProcess from "./MapProcess";
+
 
 
 export type ProcessIfBase = {
@@ -9,6 +11,7 @@ export type ProcessIfBase = {
   value?: FieldValueBase;
 }
 
+
 export default class ProcessIf implements ProcessIfBase, MapProcess {
   public exists?: string;
 
@@ -16,7 +19,7 @@ export default class ProcessIf implements ProcessIfBase, MapProcess {
 
   public value?: FieldValue;
 
-  constructor(obj: ProcessIfBase) {
+  constructor(obj: ProcessIfBase, public agnese: Agnese) {
     if (obj.exists !== undefined) {
       this.exists = obj.exists;
     }
@@ -26,7 +29,7 @@ export default class ProcessIf implements ProcessIfBase, MapProcess {
     }
 
     if (obj.value !== undefined) {
-      this.value = new FieldValue(obj.value);
+      this.value = new FieldValue(obj.value, this.agnese);
     }
   }
 

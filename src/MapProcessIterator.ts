@@ -1,6 +1,8 @@
 import MapField, {FieldBase} from "./MapField";
 import FieldValue from "./FieldValue";
 import MapProcess from "./MapProcess";
+import Agnese from "./Agnese";
+
 
 
 export type MapProcessIteratorBase = {
@@ -9,6 +11,7 @@ export type MapProcessIteratorBase = {
   keyName?: string;
   do?: FieldBase;
 }
+
 
 export default class MapProcessIterator implements MapProcessIteratorBase, MapProcess {
   public each: string;
@@ -19,7 +22,7 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
   
   public do?: MapField;
 
-  constructor(obj: MapProcessIteratorBase) {
+  constructor(obj: MapProcessIteratorBase, public agnese: Agnese) {
     this.each = obj.each;
 
     if (obj !== undefined) {
@@ -32,7 +35,7 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
       }
   
       if (obj.do !== undefined) {
-        this.do = new MapField(obj.do);
+        this.do = new MapField(obj.do, this.agnese);
       }
     }
   }

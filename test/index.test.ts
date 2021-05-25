@@ -1,6 +1,7 @@
 import * as Path from "path";
-import Agnese from "../src/index";
+import Agnese, { PreprocessorManager } from "../src/index";
 import MapInfo from "../src/MapInfo";
+import {Preprocessors} from "../src/PreprocessorManager";
 
 
 
@@ -36,6 +37,14 @@ const sourceData = {
     }
   ]
 };
+
+const preprocessors: Preprocessors = {
+  sum10: (source: any, value: any) => {
+    return value + 10;
+  }
+};
+
+const preprocessorManager = new PreprocessorManager(preprocessors);
 
 
 
@@ -141,6 +150,15 @@ describe("Base item/field features", () => {
       let mapper = new Agnese();
       mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/field-if-empty.jsonc"));
       expect(mapper.map(sourceData)).toEqual({});
+    });
+  });
+
+  describe("Preprocessors", () => {
+    test("Preprocessor by name", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.jsonc"));
+      mapper.setPreprocessorManager(preprocessorManager);
+      expect(mapper.map(sourceData)).toEqual(186);
     });
   });
 

@@ -1,0 +1,9 @@
+{
+  "type": "Integer",
+  "value": {
+    "fromPath": "characteristics.height"
+  },
+  "preprocessor": {
+    "name": "sum10"
+  }
+}

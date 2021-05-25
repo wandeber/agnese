@@ -1,6 +1,9 @@
 import * as FS from "fs";
 import MapInfo, {MapInfoBase} from "./MapInfo";
-import { FieldType } from "./Types";
+import PreprocessorManager from "./PreprocessorManager";
+import {FieldType} from "./Types";
+
+
 
 // Optional dependency.
 // TODO: Look for a maintained alternative.
@@ -22,11 +25,10 @@ export default class Agnese {
   
   FieldType = FieldType;
 
-  preprocessors: any;
+  preprocessorManager?: PreprocessorManager;
 
   /** @type {MapInfo} */
   mapInfo?: MapInfo;
-
   
 
   /**
@@ -77,11 +79,15 @@ export default class Agnese {
         this.mapInfo = mapInfo;
       }
       else {
-        this.mapInfo = new MapInfo(mapInfo);
+        this.mapInfo = new MapInfo(mapInfo, this);
       }
     }
 
     return true;
+  }
+
+  public setPreprocessorManager(preprocessorManager: PreprocessorManager) {
+    this.preprocessorManager = preprocessorManager;
   }
 
   /**

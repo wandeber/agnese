@@ -1,66 +1,29 @@
-type AnyFunction = (...args: any) => any;
+export type AnyFunction = (...args: any) => any;
 
-export default class PreprocessorManager {
-  static preprocessors: any;
+export type PreprocessorFunction = (sourceData: any, value: any, ...args: any) => any;
 
-  public static getPreprocessor(preprocessor: any): AnyFunction|null {
-    let fn = null;
-    
-    let name;
-    if (typeof preprocessor === "string") {
-      name = preprocessor;
-    }
-    else if (typeof preprocessor === "object") {
-      if (typeof preprocessor.name === "string") {
-        name = preprocessor;
-      }
-      else {
-        console.log("preprocessor is an object without 'name' property");
-      }
-    }
-
-    if (this.preprocessors) {
-      if (this.preprocessors.constructor && typeof this.preprocessors.constructor[name] === "function") {
-        fn = this.preprocessors.constructor[name];
-      }
-      else if (typeof this.preprocessors[name] === "function") {
-        fn = this.preprocessors[name];
-      }
-    }
-
-    return fn;
-  }
-
-  public static addPreprocessor(name: string, preprocessor: AnyFunction) {
-    this.preprocessors[name] = preprocessor;
-  }
-
-  public static setPreprocessors(preprocessors: any) {
-    this.preprocessors = preprocessors;
-  }
+export class Preprocessors {
+  [key: string]: AnyFunction|PreprocessorFunction;
 }
 
 
 
-export class Preprocessable {
-  public preprocessor?: string;
+export default class PreprocessorManager {
+  constructor(public preprocessors: Preprocessors) {}
 
-  protected preprocessorFn?: AnyFunction|null;
-
-  constructor(obj: any) {
-    if (obj.preprocessor !== undefined) {
-      this.preprocessor = obj.preprocessor; // TODO: Get preprocessor.
+  public getPreprocessor(name: string): AnyFunction|null {
+    let fn = null;
+    if (this.preprocessors && typeof this.preprocessors[name] === "function") {
+      fn = this.preprocessors[name];
     }
-  }
-  
-  protected getPreprocessor(): AnyFunction|null {
-    if (typeof this.preprocessorFn !== "function") {
-      this.preprocessorFn = PreprocessorManager.getPreprocessor(this.preprocessor);
-    }
-    return this.preprocessorFn;
+    return fn;
   }
 
-  /*protected preprocess() {
+  public addPreprocessor(name: string, preprocessor: AnyFunction) {
+    this.preprocessors[name] = preprocessor;
+  }
 
-  }*/
+  public setPreprocessors(preprocessors: Preprocessors) {
+    this.preprocessors = preprocessors;
+  }
 }

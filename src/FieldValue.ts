@@ -1,5 +1,8 @@
 import ValueSwitch, {ValueSwitchBase} from "./ValueSwitch";
 import MapProcess from "./MapProcess";
+import Agnese from "./Agnese";
+
+
 
 export type FieldValueBase = {
   type?: string;
@@ -8,6 +11,7 @@ export type FieldValueBase = {
   fromFirstPresentPath?: string[];
   fromConditionalPath?: ValueSwitchBase;
 }
+
 
 export default class FieldValue implements FieldValueBase, MapProcess {
   public type?: string;
@@ -21,7 +25,7 @@ export default class FieldValue implements FieldValueBase, MapProcess {
   public fromConditionalPath?: ValueSwitch;
 
 
-  constructor(obj: FieldValueBase) {
+  constructor(obj: FieldValueBase, public agnese: Agnese) {
     if (obj.type !== undefined) {
       this.type = obj.type;
     }
@@ -39,7 +43,7 @@ export default class FieldValue implements FieldValueBase, MapProcess {
     }
 
     if (obj.fromConditionalPath !== undefined) {
-      this.fromConditionalPath = new ValueSwitch(obj.fromConditionalPath);
+      this.fromConditionalPath = new ValueSwitch(obj.fromConditionalPath, this.agnese);
     }
   }
 
