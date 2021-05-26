@@ -2,8 +2,6 @@
 
 Save thouthands of lines in mappings.
 
-> :warning: **Please, don't use this project on production until we release the first stable version. Agnese is taking shape and we could introduce incompatibilities without previous warning or change our mind regarding certain features**.
-
 ## Table of Contents
 
 - [Features](#features)
