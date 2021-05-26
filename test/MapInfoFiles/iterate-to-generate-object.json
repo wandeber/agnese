@@ -1,0 +1,26 @@
+{
+  "type": "Array",
+  "iterate": {
+    "each": "transformations",
+    "type": "Object",
+    "targetKeyName": "\"transformation\" + (key + 1)",
+    "do": {
+      "type": "Object",
+      "fields": [
+        {
+          "type": "Number",
+          "name": "number",
+          "value": {
+            "fromPath": "key"
+          }
+        },
+        {
+          "name": "transformationName",
+          "value": {
+            "fromPath": "item.name"
+          }
+        }
+      ]
+    }
+  }
+}

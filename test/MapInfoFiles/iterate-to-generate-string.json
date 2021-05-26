@@ -1,0 +1,13 @@
+{
+  "type": "String",
+  "iterate": {
+    "each": "transformations",
+    "type": "String",
+    "do": {
+      "type": "String",
+      "value": {
+        "fromPath": "item.level"
+      }
+    }
+  }
+}

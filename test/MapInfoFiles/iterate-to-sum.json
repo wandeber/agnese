@@ -1,0 +1,13 @@
+{
+  "type": "Array",
+  "iterate": {
+    "each": "transformations",
+    "type": "Number",
+    "do": {
+      "type": "Number",
+      "value": {
+        "fromPath": "item.level"
+      }
+    }
+  }
+}

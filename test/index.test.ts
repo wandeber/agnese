@@ -282,6 +282,24 @@ describe("Iterator", () => {
     let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-undefined.json"));
     expect(mapper.map(sourceData)).toBeUndefined();
   });
+
+  test("Iterate to generate object", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-to-generate-object.json"));
+    expect(mapper.map(sourceData)).toEqual({
+      transformation1: {number: 0, transformationName: 'Super Saiyan'},
+      transformation2: {number: 1, transformationName: 'Super Saiyan II'}
+    });
+  });
+
+  test("Iterate to generate string", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-to-generate-string.json"));
+    expect(mapper.map(sourceData)).toEqual("12");
+  });
+
+  test("Iterate to sum", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-to-sum.json"));
+    expect(mapper.map(sourceData)).toEqual(3);
+  });
 });
 
 describe("Preprocessor", () => {
