@@ -23,8 +23,8 @@ Save thouthands of lines in mappings.
 - [x] Force types and casting.
 - [x] JSONC optional support.
 - [x] Use of custom functions to preprocess values before assign them.
+- [x] Values from conditional path (switch).
 - [ ] YAML optional support.
-- [ ] Conditional values.
 
 > *Quara is a simple JavaScript interpreted language that will be available soon as a separate module.
 
