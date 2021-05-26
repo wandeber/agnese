@@ -24,23 +24,23 @@ export interface FieldBase extends ItemBase {
 
 
 export class MapItem extends Preprocessable implements ItemBase {
-  public type?: FieldType;
+  type?: FieldType;
 
-  public fields?: MapField[];
+  fields?: MapField[];
 
-  public items?: MapField[];
+  items?: MapField[];
 
-  public if?: ProcessIf;
+  if?: ProcessIf;
 
-  public iterate?: MapProcessIterator;
+  iterate?: MapProcessIterator;
 
-  public value?: FieldValue;
+  value?: FieldValue;
 
   /**
    * Allow or not empty values "", {} and [].
    * @type boolean
    */
-   public allowEmpty? = true;
+  allowEmpty? = true;
 
 
   constructor(obj: ItemBase, public agnese: Agnese) {
@@ -81,7 +81,7 @@ export class MapItem extends Preprocessable implements ItemBase {
     }
   }
 
-  public map(sourceData: any): any {
+  map(sourceData: any): any {
     // If filed "if" exists, its condition must be true or this field will be ignored.
     if (this.if !== undefined && !this.if.process(sourceData)) { // TODO: Evaluar if con Quara.
       return undefined;
@@ -187,7 +187,7 @@ export class MapItem extends Preprocessable implements ItemBase {
 
 
 export default class MapField extends MapItem implements FieldBase {
-  public name?: string;
+  name?: string;
 
   constructor(obj: FieldBase, public agnese: Agnese) {
     super(obj, agnese);

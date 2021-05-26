@@ -11,7 +11,7 @@ export class Preprocessors {
 export default class PreprocessorManager {
   constructor(public preprocessors: Preprocessors) {}
 
-  public getPreprocessor(name: string): AnyFunction|null {
+  getPreprocessor(name: string): AnyFunction|null {
     let fn = null;
     if (this.preprocessors && typeof this.preprocessors[name] === "function") {
       fn = this.preprocessors[name];
@@ -19,11 +19,11 @@ export default class PreprocessorManager {
     return fn;
   }
 
-  public addPreprocessor(name: string, preprocessor: AnyFunction) {
+  addPreprocessor(name: string, preprocessor: AnyFunction) {
     this.preprocessors[name] = preprocessor;
   }
 
-  public setPreprocessors(preprocessors: Preprocessors) {
+  setPreprocessors(preprocessors: Preprocessors) {
     this.preprocessors = preprocessors;
   }
 }

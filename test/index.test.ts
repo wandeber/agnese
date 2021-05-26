@@ -203,6 +203,14 @@ describe("Value", () => {
     });
   });
 
+  test("Value from conditional path", () => {
+    let mapper = new Agnese();
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/from-conditional-path.jsonc"));
+    expect(mapper.map(sourceData)).toEqual({
+      name: "Gohan"
+    });
+  });
+
   test("Value from first present path", () => {
     let mapper = new Agnese();
     mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/from-first-present-path.jsonc"));

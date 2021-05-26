@@ -14,15 +14,15 @@ export type FieldValueBase = {
 
 
 export default class FieldValue implements FieldValueBase, MapProcess {
-  public type?: string;
+  type?: string;
 
-  public default?: any;
+  default?: any;
 
-  public fromPath?: string;
+  fromPath?: string;
 
-  public fromFirstPresentPath?: string[];
+  fromFirstPresentPath?: string[];
 
-  public fromConditionalPath?: ValueSwitch;
+  fromConditionalPath?: ValueSwitch;
 
 
   constructor(obj: FieldValueBase, public agnese: Agnese) {
@@ -47,14 +47,12 @@ export default class FieldValue implements FieldValueBase, MapProcess {
     }
   }
 
-  public process(sourceData: any): any {
+  process(sourceData: any): any {
     // TODO: Force types.
     let result: any = this.default;
-    let value;
-    if (this.fromPath) {
-      value = FieldValue.getValueFromPath(sourceData, this.fromPath);
-    }
-    else if (this.fromFirstPresentPath) {
+    let value: any;
+    
+    if (this.fromFirstPresentPath) {
       for (const fromPath of this.fromFirstPresentPath) {
         value = FieldValue.getValueFromPath(sourceData, fromPath);
         if (value !== undefined) {
@@ -62,8 +60,17 @@ export default class FieldValue implements FieldValueBase, MapProcess {
         }
       }
     }
-    else if (this.fromConditionalPath) {
-
+    else {
+      let path: any;
+      if (this.fromPath) {
+        path = this.fromPath;
+      }
+      else if (this.fromConditionalPath) {
+        path = this.fromConditionalPath.process(sourceData);
+      }
+      if (path) {
+        value = FieldValue.getValueFromPath(sourceData, path);
+      }
     }
 
     if (value !== undefined) {
@@ -74,7 +81,7 @@ export default class FieldValue implements FieldValueBase, MapProcess {
     return result;
   }
 
-  public static getValueFromPath(sourceData: any, path: any): any {
+  static getValueFromPath(sourceData: any, path: any): any {
     path = path.split(".");
     let value = sourceData;
     if (Array.isArray(path)) { // Array to follow path to the value.

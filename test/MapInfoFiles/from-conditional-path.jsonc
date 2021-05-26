@@ -1,0 +1,32 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "name",
+      "value": {
+        "fromConditionalPath": {
+          "branches": [
+            {
+              "if": {
+                "exists": "level"
+              },
+              "result": "level"
+            },
+            {
+              "if": {
+                "value": false
+              },
+              "result": "surname"
+            },
+            {
+              "if": {
+                "quara": "name == \"Gohan\""
+              },
+              "result": "name"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

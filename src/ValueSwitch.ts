@@ -4,47 +4,64 @@ import Agnese from "./Agnese";
 
 
 
-export type ConditionalValueBase = {
+export type SwitchBranchBase = {
   if?: ProcessIfBase;
   result: any;
 }
 
 
 export type ValueSwitchBase = {
-  conditions?: ConditionalValueBase[];
+  branches?: SwitchBranchBase[];
 }
 
 
-export class ConditionalValue implements ConditionalValueBase {
-  public if?: ProcessIf;
+export class SwitchBranch implements SwitchBranchBase {
+  if?: ProcessIf;
 
-  public result: any;
+  result: any;
 
-  constructor(obj: ConditionalValueBase, public agnese: Agnese) {
+  constructor(obj: SwitchBranchBase, public agnese: Agnese) {
     if (obj.if !== undefined) {
-      this.if = obj.if as ProcessIf;
+      this.if = new ProcessIf(obj.if, agnese);
     }
 
     if (obj.result !== undefined) {
       this.result = obj.result;
     }
   }
+
+  process(sourceData: any): any {
+    let result: any;
+    if (this.if && this.if.process(sourceData)) {
+      result = this.result;
+    }
+    return result;
+  }
 }
 
 
 export default class ValueSwitch implements ValueSwitchBase, MapProcess {
-  public conditions?: ConditionalValue[];
+  branches?: SwitchBranch[];
 
   constructor(obj: ValueSwitchBase, public agnese: Agnese) {
-    if (Array.isArray(obj.conditions)) {
-      this.conditions = [];
-      for (const condition of obj.conditions) {
-        this.conditions.push(new ConditionalValue(condition, this.agnese));
+    if (Array.isArray(obj.branches)) {
+      this.branches = [];
+      for (const condition of obj.branches) {
+        this.branches.push(new SwitchBranch(condition, this.agnese));
       }
     }
   }
 
-  public process(): boolean {
-    return true;
+  process(sourceData: any): any {
+    let result: any;
+    if (Array.isArray(this.branches)) {
+      for (const branch of this.branches) {
+        result = branch.process(sourceData);
+        if (result !== undefined) {
+          return result;
+        }
+      }
+    }
+    return result;
   }
 }

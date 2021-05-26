@@ -13,11 +13,11 @@ export type ProcessIfBase = {
 
 
 export default class ProcessIf implements ProcessIfBase, MapProcess {
-  public exists?: string;
+  exists?: string;
 
-  public quara?: string;
+  quara?: string;
 
-  public value?: FieldValue;
+  value?: FieldValue;
 
   constructor(obj: ProcessIfBase, public agnese: Agnese) {
     if (obj.exists !== undefined) {
@@ -33,7 +33,7 @@ export default class ProcessIf implements ProcessIfBase, MapProcess {
     }
   }
 
-  public process(sourceData: any): boolean {
+  process(sourceData: any): boolean {
     if (this.exists) {
       return FieldValue.getValueFromPath(sourceData, this.exists);
     }

@@ -56,7 +56,7 @@ export default class Agnese {
    * 
    * @return {boolean} true if the mapInfo is properly loaded and false if not.
    */
-  public setMapInfo(mapInfo: MapInfo|MapInfoBase|string): boolean {
+  setMapInfo(mapInfo: MapInfo|MapInfoBase|string): boolean {
     if (typeof mapInfo === "string") {
       try {
         mapInfo = FS.readFileSync(mapInfo).toString();
@@ -86,7 +86,7 @@ export default class Agnese {
     return true;
   }
 
-  public setPreprocessorManager(preprocessorManager: PreprocessorManager) {
+  setPreprocessorManager(preprocessorManager: PreprocessorManager) {
     this.preprocessorManager = preprocessorManager;
   }
 
@@ -97,7 +97,7 @@ export default class Agnese {
    * @param {any} sourceData Source data you want to turn into another thing based on the mapInfo.
    * @returns {any} The result of the transformation.
    */
-  public map(sourceData: any): any {
+  map(sourceData: any): any {
     let result: any;
     if (this.mapInfo) {
       result = this.mapInfo.map(sourceData);

@@ -14,13 +14,13 @@ export type MapProcessIteratorBase = {
 
 
 export default class MapProcessIterator implements MapProcessIteratorBase, MapProcess {
-  public each: string;
+  each: string;
 
-  public as = "item";
+  as = "item";
   
-  public keyName = "key";
+  keyName = "key";
   
-  public do?: MapField;
+  do?: MapField;
 
   constructor(obj: MapProcessIteratorBase, public agnese: Agnese) {
     this.each = obj.each;
@@ -40,7 +40,7 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
     }
   }
 
-  public process(sourceData: any): any {
+  process(sourceData: any): any {
     let result: any;
     const iterable = FieldValue.getValueFromPath(sourceData, this.each);
     
