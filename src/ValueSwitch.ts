@@ -32,7 +32,7 @@ export class SwitchBranch implements SwitchBranchBase {
 
   process(sourceData: any): any {
     let result: any;
-    if (this.if && this.if.process(sourceData)) {
+    if (this.if === undefined || this.if.process(sourceData)) {
       result = this.result;
     }
     return result;

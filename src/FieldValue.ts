@@ -1,20 +1,25 @@
 import ValueSwitch, {ValueSwitchBase} from "./ValueSwitch";
 import MapProcess from "./MapProcess";
 import Agnese from "./Agnese";
+import { FieldType } from "./Types";
 
 
 
 export type FieldValueBase = {
-  type?: string;
+  type?: FieldType;
   default?: any;
   fromPath?: string;
   fromFirstPresentPath?: string[];
   fromConditionalPath?: ValueSwitchBase;
 }
 
+export interface ITyped {
+  type?: FieldType;
+  assureType(value: any): any;
+}
 
-export default class FieldValue implements FieldValueBase, MapProcess {
-  type?: string;
+export default class FieldValue implements FieldValueBase, MapProcess, ITyped {
+  type?: FieldType;
 
   default?: any;
 
@@ -78,36 +83,43 @@ export default class FieldValue implements FieldValueBase, MapProcess {
       result = value;
     }
 
+    result = this.assureType(result);
+
     return result;
   }
 
-  static getValueFromPath(sourceData: any, path: any): any {
-    path = path.split(".");
+  static getValueFromPath(sourceData: any, path: string): any {
+    let subpaths = path.split(".");
     let value = sourceData;
-    if (Array.isArray(path)) { // Array to follow path to the value.
-      for (let i = 0; i < path.length; i++) {
-        if (value === null) {
-          break;
-        }
-
-        if (value === undefined) {
-          break;
-        }
-
-        if (value[path[i]] === undefined) {
-          value = undefined;
-          break;
-        }
-        
-        if (typeof value === "object") {
-          value = value[path[i]];
-        }
-        //else { // Value if the path doesn"t exist.
-        //  value = "ERROR";
-        //  break;
-        //}
+    //if (Array.isArray(subpaths)) { // Array to follow path to the value.
+    for (let i = 0; i < subpaths.length; i++) {
+      try {
+        value = value[subpaths[i]];
+      }
+      catch {
+        value = undefined;
+        break;
       }
     }
+    //}
     return value;
+  }
+
+  assureType(result: any) {
+    return FieldValue.assureTypeTo(result, this.type);
+  }
+
+  static assureTypeTo(result: any, type?: FieldType) {
+    if (result !== undefined && type !== undefined) {
+      switch (type) {
+        case FieldType.Integer: result = parseInt(result); break;
+        case FieldType.Float:   result = parseFloat(result); break;
+        case FieldType.Number:  result = parseFloat(result); break; // TODO: To integer if integer.
+        case FieldType.Boolean: result = Boolean(result); break;
+        case FieldType.String:  result = String(result); break;
+        default: break;
+      }
+    }
+    return result;
   }
 }

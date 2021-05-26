@@ -65,28 +65,24 @@ export default class Agnese {
       }
       
       try {
-        let movida = false;
-        if (mapInfo.endsWith(".yaml")) {
-          movida = true;
-        }
         mapInfo = MapInfoParser.parse(mapInfo);
-        if (movida) {
-          console.log("mapInfo", mapInfo);
-        }
       }
       catch (error) {
-        console.log("Error parsing file mapInfo file");
+        //console.log("Error parsing file mapInfo file");
         return false;
       }
     }
     
-    if (typeof mapInfo === "object") {
-      if (mapInfo instanceof MapInfo) {
-        this.mapInfo = mapInfo;
-      }
-      else {
-        this.mapInfo = new MapInfo(mapInfo, this);
-      }
+    if (typeof mapInfo !== "object") {
+      // MapInfo not recognized.
+      return false;
+    }
+
+    if (mapInfo instanceof MapInfo) {
+      this.mapInfo = mapInfo;
+    }
+    else {
+      this.mapInfo = new MapInfo(mapInfo, this);
     }
 
     return true;

@@ -1,4 +1,4 @@
-import FieldValue, {FieldValueBase} from "./FieldValue";
+import FieldValue, {FieldValueBase, ITyped} from "./FieldValue";
 import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator";
 import ProcessIf, {ProcessIfBase} from "./ProcessIf";
 import Preprocessable, {PreprocessableBase} from "./Preprocessable";
@@ -7,7 +7,7 @@ import Agnese from "./Agnese";
 
 
 
-export interface ItemBase extends PreprocessableBase {
+export interface ItemBase extends PreprocessableBase, ITyped {
   type?: FieldType;
   fields?: ItemBase[];
   items?: ItemBase[];
@@ -116,18 +116,8 @@ export class MapItem extends Preprocessable implements ItemBase {
     return result;
   }
 
-  protected assureType(result: any) {
-    if (result != undefined) {
-      switch (this.type) {
-        case FieldType.Integer: result = parseInt(result); break;
-        case FieldType.Float:   result = parseFloat(result); break;
-        case FieldType.Number:  result = parseFloat(result); break; // TODO: To integer if integer.
-        case FieldType.Boolean: result = Boolean(result); break;
-        case FieldType.String:  result = String(result); break;
-        default: break;
-      }
-    }
-    return result;
+  assureType(result: any) {
+    return FieldValue.assureTypeTo(result, this.type);
   }
 
   private mapArray(sourceData: any): any[]|undefined {

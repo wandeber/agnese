@@ -1,7 +1,7 @@
 import * as Path from "path";
-import Agnese, { PreprocessorManager } from "../src/index";
-import MapInfo from "../src/MapInfo";
-import {Preprocessors} from "../src/PreprocessorManager";
+import Agnese, {FieldType, PreprocessorManager, MapInfo, Preprocessors} from "../src/index";
+
+
 
 
 
@@ -22,7 +22,8 @@ const sourceData = {
     gender: "Male",
     age: "10",
     height: 176.5,
-    weight: 61
+    weight: 61,
+    weakness: null
   },
   transformations: [
     {
@@ -45,8 +46,28 @@ const preprocessors: Preprocessors = {
 };
 
 const preprocessorManager = new PreprocessorManager(preprocessors);
+preprocessorManager.addPreprocessor("formatDate", () => {});
+preprocessorManager.setPreprocessors(preprocessors);
 
 
+
+describe("Index module imports", () => {
+  test("Agnese available", () => {
+    expect(Agnese).toBeDefined();
+  });
+  test("FieldType available", () => {
+    expect(FieldType).toBeDefined();
+  });
+  test("MapInfo available", () => {
+    expect(MapInfo).toBeDefined();
+  });
+  test("PreprocessorManager available", () => {
+    expect(PreprocessorManager).toBeDefined();
+  });
+  test("Preprocessors available", () => {
+    expect(Preprocessors).toBeDefined();
+  });
+});
 
 describe("Map info creation", () => {
   let mapInfo: any;
@@ -58,18 +79,34 @@ describe("Map info creation", () => {
   });
   
   test("Pass MapInfo directly as a construct parameter", () => {
+    let mapper = new Agnese(mapInfo);
+    expect(mapper.mapInfo instanceof MapInfo).toBeTruthy();
+  });
+
+  test("Pass MapInfo file with wrong format", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(mapInfo);
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/wrong-format.yaml"));
+    expect(mapper.mapInfo instanceof MapInfo).toBeFalsy();
+  });
+
+  test("Pass non-existent file", () => {
+    let mapper = new Agnese(mapInfo);
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/not-real.json"));
     expect(mapper.mapInfo instanceof MapInfo).toBeTruthy();
   });
 });
 
-
+describe("Map", () => {
+  test("Map without map info", () => {
+    let mapper = new Agnese();
+    expect(mapper.map(sourceData)).toEqual(undefined);
+  });
+});
 
 describe("Base types", () => {
   test("Create boolean", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-boolean.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-boolean.json"));
     expect(mapper.map(sourceData)).toEqual(true);
   });
 
@@ -81,25 +118,25 @@ describe("Base types", () => {
 
   test("Create float", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-float.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-float.json"));
     expect(mapper.map(sourceData)).toEqual(10.0);
   });
   
   test("Create number", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-number.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-number.json"));
     expect(mapper.map(sourceData)).toEqual(10);
   });
 
   test("Create string", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/default-string-value.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/default-string-value.json"));
     expect(mapper.map(sourceData)).toEqual("Son Goku");
   });
 
   test("Concatenate strings", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/concatenate-strings.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/concatenate-strings.json"));
     expect(mapper.map(sourceData)).toEqual("Son Gohan is the best warrior.");
   });
 
@@ -113,18 +150,16 @@ describe("Base types", () => {
 
   test("Create array", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-array.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-array.json"));
     expect(mapper.map(sourceData)).toEqual(["Great Saiyaman", "The Chosen One"]);
   });
 });
-
-
 
 describe("Base item/field features", () => {
   describe("Field if", () => {
     test("if exists", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-exists-fields.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-exists-fields.json"));
       expect(mapper.map(sourceData)).toEqual({
         surname: "Son"
       });
@@ -132,7 +167,7 @@ describe("Base item/field features", () => {
 
     test("if quara condition", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-quara-fields.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-quara-fields.json"));
       expect(mapper.map(sourceData)).toEqual({
         surname: "Son"
       });
@@ -140,7 +175,7 @@ describe("Base item/field features", () => {
 
     test("if value", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-if-value.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/conditional-if-value.json"));
       expect(mapper.map(sourceData)).toEqual({
         message: "He's alive!"
       });
@@ -148,7 +183,7 @@ describe("Base item/field features", () => {
 
     test("if empty (considered false)", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/field-if-empty.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/field-if-empty.json"));
       expect(mapper.map(sourceData)).toEqual({});
     });
   });
@@ -156,7 +191,7 @@ describe("Base item/field features", () => {
   describe("Preprocessors", () => {
     test("Preprocessor by name", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.json"));
       mapper.setPreprocessorManager(preprocessorManager);
       expect(mapper.map(sourceData)).toEqual(186);
     });
@@ -165,7 +200,7 @@ describe("Base item/field features", () => {
   describe("Field iterate", () => {
     test("Iterate", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/field-iterate.jsonc"));
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/field-iterate.json"));
       expect(mapper.map(sourceData)).toEqual([
         {
           number: 0,
@@ -181,13 +216,13 @@ describe("Base item/field features", () => {
 
   test("Allow empty compound fields", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/empty-allowed.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/empty-allowed.json"));
     expect(mapper.map(sourceData)).toEqual([]);
   });
 
   test("Don't allow empty compound fields", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/empty-not-allowed.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/empty-not-allowed.json"));
     expect(mapper.map(sourceData)).toBeUndefined();
   });
 });
@@ -195,27 +230,62 @@ describe("Base item/field features", () => {
 
 
 describe("Value", () => {
+  test("Cast to integer", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/cast-to-integer.json"));
+    expect(mapper.map(sourceData)).toEqual(10);
+  });
+
+  test("Null value", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-null.json"));
+    expect(mapper.map(sourceData)).toEqual(null);
+  });
+
+  test("Value inside null", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-inside-null.json"));
+    expect(mapper.map(sourceData)).toBeUndefined();
+  });
+
+  test("Value inside undefined", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-inside-undefined.json"));
+    expect(mapper.map(sourceData)).toBeUndefined();
+  });
+
   test("Value from path", () => {
-    let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/from-path.jsonc"));
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/from-path.json"));
     expect(mapper.map(sourceData)).toEqual({
       lastname: "Son"
     });
   });
 
   test("Value from conditional path", () => {
-    let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/from-conditional-path.jsonc"));
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/from-conditional-path.json"));
     expect(mapper.map(sourceData)).toEqual({
       name: "Gohan"
     });
   });
 
+  test("Value from conditional path 2", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/from-conditional-path-falsy.json"));
+    expect(mapper.map(sourceData)).toEqual({});
+  });
+
   test("Value from first present path", () => {
-    let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/from-first-present-path.jsonc"));
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/from-first-present-path.json"));
     expect(mapper.map(sourceData)).toEqual({
       name: "Gohan"
     });
+  });
+});
+
+describe("Iterator", () => {
+  test("Iterate undefined", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-undefined.json"));
+    expect(mapper.map(sourceData)).toBeUndefined();
+  });
+});
+
+describe("Preprocessor", () => {
+  test("Null preprocessor", () => {
+    expect(preprocessorManager.getPreprocessor("undefinedPreprocessor")).toBeNull();
   });
 });

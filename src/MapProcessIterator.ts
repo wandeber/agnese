@@ -25,18 +25,16 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
   constructor(obj: MapProcessIteratorBase, public agnese: Agnese) {
     this.each = obj.each;
 
-    if (obj !== undefined) {
-      if (obj.as !== undefined) {
-        this.as = obj.as;
-      }
-  
-      if (obj.keyName !== undefined) {
-        this.keyName = obj.keyName;
-      }
-  
-      if (obj.do !== undefined) {
-        this.do = new MapField(obj.do, this.agnese);
-      }
+    if (obj.as !== undefined) {
+      this.as = obj.as;
+    }
+
+    if (obj.keyName !== undefined) {
+      this.keyName = obj.keyName;
+    }
+
+    if (obj.do !== undefined) {
+      this.do = new MapField(obj.do, this.agnese);
     }
   }
 
