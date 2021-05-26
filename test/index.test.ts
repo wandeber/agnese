@@ -52,7 +52,7 @@ describe("Map info creation", () => {
   let mapInfo: any;
   test("Read map info from JSONC file", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-object.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-object.yaml"));
     mapInfo = mapper.mapInfo;
     expect(mapper.mapInfo instanceof MapInfo).toBeTruthy();
   });
@@ -75,7 +75,7 @@ describe("Base types", () => {
 
   test("Create integer", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-integer.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-integer.yaml"));
     expect(mapper.map(sourceData)).toEqual(176);
   });
 
@@ -105,7 +105,7 @@ describe("Base types", () => {
 
   test("Create object", () => {
     let mapper = new Agnese();
-    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-object.jsonc"));
+    mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/create-object.yaml"));
     expect(mapper.map(sourceData)).toEqual({
       parent: "Son Goku"
     });

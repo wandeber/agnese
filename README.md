@@ -14,17 +14,16 @@ Save thouthands of lines in mappings.
 
 ## Features
 
-- [x] Convert source data to objects, arrays, strings or simple data based on mapping configuration.
-- [x] Read mapping configuration from JSON file.
-- [x] Conditional fields/items powered by Quara*.
-- [x] Array iteration.
-- [x] Possibility of define a default value for a field.
-- [x] Assign values by their paths in source data.
-- [x] Force types and casting.
-- [x] JSONC optional support.
-- [x] Use of custom functions to preprocess values before assign them.
-- [x] Values from conditional path (switch).
-- [ ] YAML optional support.
+- Convert source data to objects, arrays, strings or simple data based on mapping configuration.
+- Read mapping configuration from JSON file.
+- Conditional fields/items powered by Quara*.
+- Array iteration.
+- Possibility of define a default value for a field.
+- Assign values by their paths in source data.
+- Force types and casting.
+- Use of custom functions to preprocess values before assign them.
+- Values from conditional path (switch).
+- YAML optional support.
 
 > *Quara is a simple JavaScript interpreted language that will be available soon as a separate module.
 

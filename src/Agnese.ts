@@ -6,12 +6,11 @@ import {FieldType} from "./Types";
 
 
 // Optional dependency.
-// TODO: Look for a maintained alternative.
-let JSONParser: any = JSON;
+let MapInfoParser: JSON;
 try {
-  const JSONC = require("jsonc");
-  if (JSONC) {
-    JSONParser = JSONC;
+  const YAML = require("yaml");
+  if (YAML) {
+    MapInfoParser = YAML;
   }
 }
 catch {}
@@ -64,12 +63,19 @@ export default class Agnese {
       catch (error) {
         //console.log(`Error trying read mapInfo from file`);
       }
-
+      
       try {
-        mapInfo = JSONParser.parse(mapInfo);
+        let movida = false;
+        if (mapInfo.endsWith(".yaml")) {
+          movida = true;
+        }
+        mapInfo = MapInfoParser.parse(mapInfo);
+        if (movida) {
+          console.log("mapInfo", mapInfo);
+        }
       }
       catch (error) {
-        console.log(`Error parsing file ${mapInfo} as JSONParser`, error);
+        console.log("Error parsing file mapInfo file");
         return false;
       }
     }
