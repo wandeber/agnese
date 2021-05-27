@@ -23,15 +23,16 @@ export default class Agnese {
   /**
    * @deprecated Added in order to keep compatibility. Will be removed in version 1.0.0.
    */
-  default = Agnese;
+  static default = Agnese;
   
-  Preprocessors = Preprocessors;
+  static Preprocessors = Preprocessors;
 
-  PreprocessorManager = PreprocessorManager;
+  static PreprocessorManager = PreprocessorManager;
 
-  MapInfo = MapInfo;
+  static MapInfo = MapInfo;
   
-  FieldType = FieldType;
+  static FieldType = FieldType;
+
 
   preprocessorManager?: PreprocessorManager;
 
