@@ -1,7 +1,7 @@
 import ValueSwitch, {ValueSwitchBase} from "./ValueSwitch";
-import MapProcess from "./MapProcess";
 import Agnese from "./Agnese";
-import { FieldType } from "./Types";
+import {FieldType} from "./Types";
+import MapProcess from "./MapProcess";
 
 
 

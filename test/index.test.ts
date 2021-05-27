@@ -1,5 +1,8 @@
 import * as Path from "path";
-import Agnese, {FieldType, PreprocessorManager, MapInfo, Preprocessors} from "../src/index";
+import Agnese from "../src/index";
+import MapInfo from "../src/MapInfo";
+import PreprocessorManager, {Preprocessors} from "../src/PreprocessorManager";
+import {FieldType} from "../src/Types";
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@wandeber/agnese",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This project will help you to map data easily based on a configuration.",
   "license": "MIT",
   "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://wandeber.com)",
@@ -69,6 +69,6 @@
     }
   },
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">= 10"
   }
 }

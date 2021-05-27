@@ -28,7 +28,7 @@ export class Preprocessor implements PreprocessorBase {
     if (
       typeof this.fn !== "function"
       && this.agnese?.preprocessorManager
-      && typeof this.name === 'string'
+      && typeof this.name === "string"
     ) {
       this.fn = this.agnese.preprocessorManager.getPreprocessor(this.name);
     }

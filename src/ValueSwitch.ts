@@ -1,6 +1,6 @@
 import ProcessIf, {ProcessIfBase} from "./ProcessIf";
-import MapProcess from "./MapProcess";
 import Agnese from "./Agnese";
+import MapProcess from "./MapProcess";
 
 
 

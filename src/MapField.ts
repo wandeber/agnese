@@ -1,9 +1,9 @@
 import FieldValue, {FieldValueBase, ITyped} from "./FieldValue";
 import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator";
-import ProcessIf, {ProcessIfBase} from "./ProcessIf";
 import Preprocessable, {PreprocessableBase} from "./Preprocessable";
-import {FieldType} from "./Types";
+import ProcessIf, {ProcessIfBase} from "./ProcessIf";
 import Agnese from "./Agnese";
+import {FieldType} from "./Types";
 
 
 

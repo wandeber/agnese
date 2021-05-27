@@ -1,6 +1,6 @@
 import * as FS from "fs";
 import MapInfo, {MapInfoBase} from "./MapInfo";
-import PreprocessorManager from "./PreprocessorManager";
+import PreprocessorManager, {Preprocessors} from "./PreprocessorManager";
 import {FieldType} from "./Types";
 
 
@@ -20,6 +20,15 @@ catch {}
 
 
 export default class Agnese {
+  /**
+   * @deprecated Added in order to keep compatibility. Will be removed in version 1.0.0.
+   */
+  default = Agnese;
+  
+  Preprocessors = Preprocessors;
+
+  PreprocessorManager = PreprocessorManager;
+
   MapInfo = MapInfo;
   
   FieldType = FieldType;

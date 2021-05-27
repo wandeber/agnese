@@ -9,7 +9,9 @@ export class Preprocessors {
 
 
 export default class PreprocessorManager {
-  constructor(public preprocessors: Preprocessors) {}
+  constructor(public preprocessors: Preprocessors) {
+    this.preprocessors = preprocessors;
+  }
 
   getPreprocessor(name: string): AnyFunction|null {
     let fn = null;

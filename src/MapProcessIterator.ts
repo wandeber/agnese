@@ -1,8 +1,8 @@
-import MapField, {FieldBase} from "./MapField";
 import FieldValue, {ITyped} from "./FieldValue";
-import MapProcess from "./MapProcess";
+import MapField, {FieldBase} from "./MapField";
 import Agnese from "./Agnese";
-import { FieldType } from "./Types";
+import {FieldType} from "./Types";
+import MapProcess from "./MapProcess";
 const Quara = require("../other-dependencies/quara").default;
 
 
@@ -27,7 +27,7 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
   
   keyName = "key";
 
-  targetKeyName: string = "key"; // Evaluated by Quara.
+  targetKeyName = "key"; // Evaluated by Quara.
   
   do?: MapField;
 
@@ -79,19 +79,17 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
         Object.assign(mergedDataSource.source, sourceData);
         mergedDataSource[this.keyName] = index;
         mergedDataSource[this.as] = iterable[index];
-        if (this.do !== undefined) {
-          let value = this.do.map(mergedDataSource);
-          if (value !== undefined) {
-            if (this.type === FieldType.Object) {
-              let propName = new Quara(this.targetKeyName, mergedDataSource).run();
-              result[propName] = value;
-            }
-            else if (this.type === FieldType.Array) {
-              result.push(value);
-            }
-            else {
-              result += value;
-            }
+        let value;
+        if (this.do !== undefined && (value = this.do.map(mergedDataSource)) !== undefined) {
+          if (this.type === FieldType.Object) {
+            let propName = new Quara(this.targetKeyName, mergedDataSource).run();
+            result[propName] = value;
+          }
+          else if (this.type === FieldType.Array) {
+            result.push(value);
+          }
+          else {
+            result += value;
           }
         }
       }
