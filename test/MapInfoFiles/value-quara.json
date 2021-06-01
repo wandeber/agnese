@@ -1,0 +1,11 @@
+{
+  "type": "Object",
+  "fields": [
+    {
+      "name": "fullName",
+      "value": {
+        "quara": "name +\" \"+ surname"
+      }
+    }
+  ]
+}

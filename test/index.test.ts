@@ -278,7 +278,36 @@ describe("Value", () => {
       name: "Gohan"
     });
   });
+
+  test("Value from switch", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch.json"));
+    expect(mapper.map(sourceData)).toEqual({
+      status: "He is inmortal."
+    });
+  });
+
+  test("Value from quara", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-quara.json"));
+    expect(mapper.map(sourceData)).toEqual({
+      fullName: "Gohan Son"
+    });
+  });
 });
+
+
+describe("Switch", () => {
+  test("From value", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch-value.json"));
+    expect(mapper.map(sourceData)).toEqual({
+      status: "He is still inmortal."
+    });
+  });
+});
+
+
+
+
+
 
 describe("Iterator", () => {
   test("Iterate undefined", () => {

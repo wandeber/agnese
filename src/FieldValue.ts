@@ -3,6 +3,10 @@ import Agnese from "./Agnese";
 import {FieldType} from "./Types";
 import MapProcess from "./MapProcess";
 
+const Quara = require("../other-dependencies/quara").default;
+
+
+
 
 
 export type FieldValueBase = {
@@ -11,6 +15,8 @@ export type FieldValueBase = {
   fromPath?: string;
   fromFirstPresentPath?: string[];
   fromConditionalPath?: ValueSwitchBase;
+  quara?: string;
+  switch?: ValueSwitchBase;
 }
 
 export interface ITyped {
@@ -28,6 +34,10 @@ export default class FieldValue implements FieldValueBase, MapProcess, ITyped {
   fromFirstPresentPath?: string[];
 
   fromConditionalPath?: ValueSwitch;
+
+  quara?: string;
+
+  switch?: ValueSwitch;
 
 
   constructor(obj: FieldValueBase, public agnese: Agnese) {
@@ -50,6 +60,14 @@ export default class FieldValue implements FieldValueBase, MapProcess, ITyped {
     if (obj.fromConditionalPath !== undefined) {
       this.fromConditionalPath = new ValueSwitch(obj.fromConditionalPath, this.agnese);
     }
+
+    if (obj.switch !== undefined) {
+      this.switch = new ValueSwitch(obj.switch, this.agnese);
+    }
+
+    if (obj.quara !== undefined) {
+      this.quara = obj.quara;
+    }
   }
 
   process(sourceData: any): any {
@@ -65,7 +83,7 @@ export default class FieldValue implements FieldValueBase, MapProcess, ITyped {
         }
       }
     }
-    else {
+    else if (this.fromPath || this.fromConditionalPath) {
       let path: any;
       if (this.fromPath) {
         path = this.fromPath;
@@ -76,6 +94,12 @@ export default class FieldValue implements FieldValueBase, MapProcess, ITyped {
       if (path) {
         value = FieldValue.getValueFromPath(sourceData, path);
       }
+    }
+    else if (this.switch !== undefined) {
+      value = this.switch.process(sourceData);
+    }
+    else if (this.quara !== undefined) {
+      value = new Quara(this.quara, sourceData).run();
     }
 
     if (value !== undefined) {

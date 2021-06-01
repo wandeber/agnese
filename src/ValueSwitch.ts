@@ -1,3 +1,4 @@
+import FieldValue, {FieldValueBase} from "./FieldValue";
 import ProcessIf, {ProcessIfBase} from "./ProcessIf";
 import Agnese from "./Agnese";
 import MapProcess from "./MapProcess";
@@ -6,19 +7,26 @@ import MapProcess from "./MapProcess";
 
 export type SwitchBranchBase = {
   if?: ProcessIfBase;
-  result: any;
+  result?: any;
+  value?: FieldValueBase;
 }
 
 
 export type ValueSwitchBase = {
+  /**
+   * @deprecated branches will be removed in version 1.0.0. Use cases instead.
+   */
   branches?: SwitchBranchBase[];
+  cases?: SwitchBranchBase[];
 }
 
 
 export class SwitchBranch implements SwitchBranchBase {
   if?: ProcessIf;
 
-  result: any;
+  result?: any;
+
+  value?: FieldValue;
 
   constructor(obj: SwitchBranchBase, public agnese: Agnese) {
     if (obj.if !== undefined) {
@@ -28,12 +36,21 @@ export class SwitchBranch implements SwitchBranchBase {
     if (obj.result !== undefined) {
       this.result = obj.result;
     }
+
+    if (obj.value !== undefined) {
+      this.value = new FieldValue(obj.value, this.agnese);
+    }
   }
 
   process(sourceData: any): any {
     let result: any;
     if (this.if === undefined || this.if.process(sourceData)) {
-      result = this.result;
+      if (this.result !== undefined) {
+        result = this.result;
+      }
+      else if (this.value !== undefined) {
+        result = this.value.process(sourceData);
+      }
     }
     return result;
   }
@@ -41,21 +58,29 @@ export class SwitchBranch implements SwitchBranchBase {
 
 
 export default class ValueSwitch implements ValueSwitchBase, MapProcess {
+  /**
+   * @deprecated branches will be removed in version 1.0.0. Use cases instead.
+   */
   branches?: SwitchBranch[];
 
+  cases?: SwitchBranch[];
+
   constructor(obj: ValueSwitchBase, public agnese: Agnese) {
-    if (Array.isArray(obj.branches)) {
-      this.branches = [];
-      for (const condition of obj.branches) {
-        this.branches.push(new SwitchBranch(condition, this.agnese));
+    if (Array.isArray(obj.branches) && !Array.isArray(obj.cases)) {
+      obj.cases = obj.branches;
+    }
+    if (Array.isArray(obj.cases)) {
+      this.cases = [];
+      for (const condition of obj.cases) {
+        this.cases.push(new SwitchBranch(condition, this.agnese));
       }
     }
   }
 
   process(sourceData: any): any {
     let result: any;
-    if (Array.isArray(this.branches)) {
-      for (const branch of this.branches) {
+    if (Array.isArray(this.cases)) {
+      for (const branch of this.cases) {
         result = branch.process(sourceData);
         if (result !== undefined) {
           return result;
