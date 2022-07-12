@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schema/index.json",
   "value": {
     "type": "Integer",
     "fromPath": "characteristics.age"

@@ -42,7 +42,8 @@
   "files": [
     "LICENSE",
     "dist",
-    "other-dependencies"
+    "other-dependencies",
+    "schema"
   ],
   "devDependencies": {
     "@types/jest": "^26.0.10",

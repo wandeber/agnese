@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./ItemBase.json",
+  "title": "ItemBase",
+  "description": "ItemBase",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./ITyped.json"
+    }
+  ],
+  "properties": {
+    "fields": {
+      "type": "array",
+      "items": {
+        "$ref": "./ItemBase.json"
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "./ItemBase.json"
+      }
+    },
+    "if": {
+      "$ref": "./ProcessIfBase.json"
+    },
+    "iterate": {
+      "$ref": "./MapProcessIteratorBase.json"
+    },
+    "value": {
+      "$ref": "./FieldValueBase.json"
+    },
+    "allowEmpty": {
+      "type": "boolean"
+    }
+  }
+}

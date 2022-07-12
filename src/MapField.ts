@@ -8,7 +8,6 @@ import {FieldType} from "./Types";
 
 
 export interface ItemBase extends PreprocessableBase, ITyped {
-  type?: FieldType;
   fields?: ItemBase[];
   items?: ItemBase[];
   if?: ProcessIfBase;

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./MapProcessIteratorBase.json",
+  "title": "MapProcessIteratorBase",
+  "description": "MapProcessIteratorBase",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./ITyped.json"
+    }
+  ],
+  "properties": {
+    "each": {
+      "type": "string"
+    },
+    "as": {
+      "type": "string"
+    },
+    "keyName": {
+      "type": "string"
+    },
+    "targetKeyName": {
+      "type": "string"
+    },
+    "do": {
+      "$ref": "./FieldBase.json"
+    }
+  },
+  "required": [
+    "each"
+  ]
+}

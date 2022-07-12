@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./ItemBase.json",
+  "title": "ItemBase",
+  "description": "ItemBase",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./ITyped.json"
+    }
+  ],
+  "properties": {
+    "default": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "fromPath": {
+      "type": "string"
+    },
+    "fromFirstPresentPath": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fromConditionalPath": {
+      "$ref": "./ValueSwitchBase.json"
+    },
+    "quara": {
+      "type": "string"
+    },
+    "switch": {
+      "$ref": "./ValueSwitchBase.json"
+    }
+  }
+}

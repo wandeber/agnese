@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./SwitchBranchBase.json",
+  "title": "SwitchBranchBase",
+  "description": "SwitchBranchBase",
+  "type": "object",
+  "properties": {
+    "if": {
+      "$ref": "./ProcessIfBase.json"
+    },
+    "result": {
+      "type": [
+        "array",
+        "object",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "value": {
+      "$ref": "./FieldValueBase.json"
+    }
+  }
+}

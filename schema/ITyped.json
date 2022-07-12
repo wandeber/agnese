@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./ITyped.json",
+  "title": "ITyped",
+  "description": "ITyped",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "Object",
+        "Array",
+        "String",
+        "Number",
+        "Integer",
+        "Float",
+        "Boolean"
+      ]
+    }
+  }
+}

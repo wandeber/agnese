@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./ValueSwitchBase.json",
+  "title": "ValueSwitchBase",
+  "description": "ValueSwitchBase",
+  "type": "object",
+  "properties": {
+    "cases": {
+      "$ref": "./SwitchBranchBase.json"
+    },
+    "branches": {
+      "$ref": "./SwitchBranchBase.json"
+    }
+  }
+}
