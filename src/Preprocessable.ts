@@ -1,9 +1,12 @@
+import FieldValue, {FieldValueBase} from "./FieldValue";
 import Agnese from "./Agnese";
 import {AnyFunction} from "./PreprocessorManager";
 
 
+
 export interface PreprocessorBase {
   name?: string;
+  args?: FieldValueBase[];
 }
 
 export interface PreprocessableBase {
@@ -15,12 +18,17 @@ export interface PreprocessableBase {
 export class Preprocessor implements PreprocessorBase {
   name?: string;
 
+  args?: FieldValue[];
+  
   fn: AnyFunction|null = null;
 
 
   constructor(obj: any, public agnese: Agnese) {
     if (obj.name !== undefined) {
       this.name = obj.name;
+    }
+    if (Array.isArray(obj.args)) {
+      this.args = obj.args.map((arg: any) => new FieldValue(arg, this.agnese));
     }
   }
 
@@ -35,13 +43,28 @@ export class Preprocessor implements PreprocessorBase {
     return this.fn;
   }
 
+  getArguments(sourceData?: any): any[] {
+    let result: any[] = [];
+    if (Array.isArray(this.args)) {
+      result = this.args.map((arg: FieldValue) => arg.process(sourceData));
+    }
+    return result;
+  }
+
   process(sourceData?: any, value?: any) {
+    let result: any;
     // If a preprocessor is defined, it will be used in any case.
     if (this.getPreprocessor() && typeof this.fn === "function") {
-      //let extraArguments = this.getPreprocessorExtraArguments(mapFieldInfo.preprocessor);
-      value = this.fn(sourceData, value/*, ...extraArguments*/);
+      let args = [];
+      if (value) {
+        args.push(value);
+      }
+      if (this.args) {
+        args.push(...this.getArguments(sourceData));
+      }
+      result = this.fn(sourceData, ...args);
     }
-    return value;
+    return result;
   }
 }
 
@@ -59,8 +82,7 @@ export default class Preprocessable implements PreprocessableBase {
   preprocess(sourceData?: any, value?: any) {
     // If a preprocessor is defined, it will be used in any case.
     if (this.preprocessor) {
-      //let extraArguments = this.getPreprocessorExtraArguments(mapFieldInfo.preprocessor);
-      value = this.preprocessor.process(sourceData, value/*, ...extraArguments*/);
+      value = this.preprocessor.process(sourceData, value);
     }
     return value;
   }

@@ -43,9 +43,9 @@ const sourceData = {
 };
 
 const preprocessors: Preprocessors = {
-  sum10: (source: any, value: any) => {
-    return value + 10;
-  }
+  // eslint-disable-next-line no-magic-numbers
+  sum10: (source: any, value: any) => value + 10,
+  sum: (source: any, ...args: any) => args.reduce((acc: any, value: any) => acc + value, 0)
 };
 
 const preprocessorManager = new PreprocessorManager(preprocessors);
@@ -197,6 +197,27 @@ describe("Base item/field features", () => {
       mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.json"));
       mapper.setPreprocessorManager(preprocessorManager);
       expect(mapper.map(sourceData)).toEqual(186);
+    });
+
+    test("Preprocessor with hardcoded arguments", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args-hardcoded.yaml"));
+      mapper.setPreprocessorManager(preprocessorManager);
+      expect(mapper.map(sourceData)).toEqual(14);
+    });
+
+    test("Preprocessor with complex arguments", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args.yaml"));
+      mapper.setPreprocessorManager(preprocessorManager);
+      expect(mapper.map(sourceData)).toEqual(190);
+    });
+
+    test("Preprocessor with value and arguments", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-value-and-args.yaml"));
+      mapper.setPreprocessorManager(preprocessorManager);
+      expect(mapper.map(sourceData)).toEqual(190);
     });
   });
 

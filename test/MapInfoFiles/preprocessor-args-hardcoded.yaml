@@ -1,0 +1,6 @@
+type: Integer
+preprocessor:
+  name: sum
+  args:
+    - default: 4
+    - default: 10

@@ -1,0 +1,6 @@
+type: Integer
+preprocessor:
+  name: sum
+  args:
+    - fromPath: characteristics.height
+    - default: 14
