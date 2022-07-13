@@ -323,6 +323,29 @@ describe("Switch", () => {
       status: "He is still inmortal."
     });
   });
+
+  test("Default result (without if)", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch-default-result.json"));
+    expect(mapper.map(sourceData)).toEqual({
+      status: "He is inmortal. The best."
+    });
+  });
+
+  test("Default value (without if)", () => {
+    let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch-no-true-case.json"));
+    expect(mapper.map(sourceData)).toEqual({});
+  });
+
+  test("No cases", () => {
+    try {
+      let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch-no-cases.json"));
+      mapper.map(sourceData);
+    }
+    catch (e) {
+      console.log(e.message);
+      expect(e.message).toEqual("[Agnese] ValueSwitch (switch): cases must be an array.");
+    }
+  });
 });
 
 

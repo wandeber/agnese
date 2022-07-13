@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../../schema/index.json
 type: Integer
 preprocessor:
   name: sum

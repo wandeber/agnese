@@ -121,6 +121,36 @@ Since the code is almost completely common to any case of use, sometimes you wil
 
 > While I complete this documentation, I recommend you take a look at the examples used in the [unit tests](test/MapInfoFiles).
 
+### Autocompletion
+
+Agnese provides [JSON schemas](schemas) that you can use with VSCode to enable autocompletion and validation.
+
+#### JSON:
+
+```json
+{
+  "$schema": "node_modules/agnese/schema/index.json",
+  "value": {
+    "type": "Integer",
+    "fromPath": "characteristics.age"
+  }
+}
+```
+
+#### YAML
+
+You need to install the [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) extension.
+
+```yaml
+# yaml-language-server: $schema=node_modules/agnese/schema/index.json
+type: Object
+fields:
+  - name: parent
+    value:
+      default: Son Goku
+```
+
+
 ## Easy CSV generation
 
 If you think on CSV as an object with one unique level, you can easily map any data to CSV or other similar structure. 

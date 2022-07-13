@@ -1,5 +1,6 @@
+# yaml-language-server: $schema=../../schema/index.json
 type: Integer
-value: {fromPath: characteristics.height}
+value: { fromPath: characteristics.height }
 preprocessor:
   name: sum
   args:

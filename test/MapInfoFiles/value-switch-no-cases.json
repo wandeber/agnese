@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/index.json",
+  "type": "Object",
+  "fields": [
+    {
+      "name": "status",
+      "value": {
+        "switch": {}
+      }
+    }
+  ]
+}

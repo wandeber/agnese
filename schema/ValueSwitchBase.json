@@ -6,10 +6,16 @@
   "type": "object",
   "properties": {
     "cases": {
-      "$ref": "./SwitchBranchBase.json"
+      "type": "array",
+      "items": {
+        "$ref": "./SwitchBranchBase.json"
+      }
     },
     "branches": {
-      "$ref": "./SwitchBranchBase.json"
+      "type": "array",
+      "items": {
+        "$ref": "./SwitchBranchBase.json"
+      }
     }
   }
 }

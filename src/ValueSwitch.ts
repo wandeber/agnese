@@ -66,7 +66,8 @@ export default class ValueSwitch implements ValueSwitchBase, MapProcess {
   cases?: SwitchBranch[];
 
   constructor(obj: ValueSwitchBase, public agnese: Agnese) {
-    if (Array.isArray(obj.branches) && !Array.isArray(obj.cases)) {
+    if (Array.isArray(obj.branches) && !obj.cases) {
+      //console.warn("[Agnese] ValueSwitch (switch): branches will be removed in version 1.0.0. Use cases instead.");
       obj.cases = obj.branches;
     }
     if (Array.isArray(obj.cases)) {
@@ -74,6 +75,9 @@ export default class ValueSwitch implements ValueSwitchBase, MapProcess {
       for (const condition of obj.cases) {
         this.cases.push(new SwitchBranch(condition, this.agnese));
       }
+    }
+    else {
+      throw new Error("[Agnese] ValueSwitch (switch): cases must be an array.");
     }
   }
 

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/index.json",
+  "type": "Object",
+  "fields": [
+    {
+      "name": "status",
+      "value": {
+        "switch": {
+          "branches": [
+            {
+              "if": {
+                "quara": "!isAlive"
+              },
+              "result": "It doesn't matter, this will be always true..."
+            },
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

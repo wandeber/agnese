@@ -1,12 +1,7 @@
+# yaml-language-server: $schema=../../schema/index.json
 # A comment because this is YAML, not JSON ;).
-{
-  "type": "Object",
-  "fields": [
-    {
-      "name": "parent",
-      "value": {
-        "default": "Son Goku"
-      }
-    }
-  ]
-}
+type: Object
+fields:
+  - name: parent
+    value:
+      default: Son Goku
