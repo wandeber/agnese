@@ -137,7 +137,7 @@ Agnese provides [JSON schemas](schemas) that you can use with VSCode to enable a
 }
 ```
 
-#### YAML
+#### YAML:
 
 You need to install the [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) extension.
 
@@ -149,7 +149,6 @@ fields:
     value:
       default: Son Goku
 ```
-
 
 ## Easy CSV generation
 
