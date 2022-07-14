@@ -1,12 +1,20 @@
 # [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wandeber/agnese/blob/main/LICENSE) [![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese) [![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions) [![Coverage Status](https://coveralls.io/repos/github/wandeber/agnese/badge.svg)](https://coveralls.io/github/wandeber/agnese)
 
-Save thouthands of lines in mappings.
+Agnese is an object mapper that allows you to transform an object (or array) into another one with different structure.
+
+The target is to completely remove or a least separate and organize the mapping code from our projects making it easy to maintain. In order to achieve this mission, Agnese makes possible to define the new structure in a JSON/YAML file and using directly there simple conditions and arithmetic operations with Quara, a tiny JavaScript interpreted language.
+
+For more complex needs, you can create your own preprocessors and point to them with different arguments to treat any data you want.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
 - [Getting started](#getting-started)
+  - [Simple mapping example](#simple-mapping-example)
+  - [Autocompletion](#autocompletion)
+    - [JSON](#json)
+    - [YAML](#yaml)
 - [Easy CSV generation](#easy-csv-generation)
 - [License](#license)
 
@@ -125,7 +133,7 @@ Since the code is almost completely common to any case of use, sometimes you wil
 
 Agnese provides [JSON schemas](schemas) that you can use with VSCode to enable autocompletion and validation.
 
-#### JSON:
+#### JSON
 
 ```json
 {
@@ -137,7 +145,7 @@ Agnese provides [JSON schemas](schemas) that you can use with VSCode to enable a
 }
 ```
 
-#### YAML:
+#### YAML
 
 You need to install the [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) extension.
 

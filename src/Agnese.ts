@@ -46,7 +46,10 @@ export default class Agnese {
    * @param {MapInfo|MapInfoBase|string} [mapInfo]
    * @see {Agnese.setMapInfo}
    */
-  constructor(mapInfo?: MapInfo|MapInfoBase|string) {
+  constructor(mapInfo?: MapInfo|MapInfoBase|string, preprocessorManager?: PreprocessorManager) {
+    if (preprocessorManager) {
+      this.setPreprocessorManager(preprocessorManager);
+    }
     if (mapInfo) {
       this.setMapInfo(mapInfo);
     }

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schema/index.json
+type: Integer
+value: { fromPath: characteristics.height }
+preprocessor:
+  name: ragnarok
+  args:
+    - default: 4
+    - default: 10

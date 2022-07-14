@@ -1,6 +1,6 @@
 import * as Path from "path";
 import Agnese from "../src/index";
-import MapInfo from "../src/MapInfo";
+import MapInfo, {MapInfoBase} from "../src/MapInfo";
 import PreprocessorManager, {Preprocessors} from "../src/PreprocessorManager";
 import {FieldType} from "../src/Types";
 
@@ -95,6 +95,14 @@ describe("Map info creation", () => {
   test("Pass non-existent file", () => {
     let mapper = new Agnese(mapInfo);
     mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/not-real.json"));
+    expect(mapper.mapInfo instanceof MapInfo).toBeTruthy();
+  });
+
+  test("Pass map info and preprocessor to constructor", () => {
+    let mapper = new Agnese(
+      Path.join(__dirname, "./MapInfoFiles/preprocessor-value-and-args.yaml"),
+      preprocessorManager
+    );
     expect(mapper.mapInfo instanceof MapInfo).toBeTruthy();
   });
 });
@@ -194,30 +202,74 @@ describe("Base item/field features", () => {
   describe("Preprocessors", () => {
     test("Preprocessor by name", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.json"));
       mapper.setPreprocessorManager(preprocessorManager);
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.json"));
       expect(mapper.map(sourceData)).toEqual(186);
     });
 
     test("Preprocessor with hardcoded arguments", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args-hardcoded.yaml"));
       mapper.setPreprocessorManager(preprocessorManager);
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args-hardcoded.yaml"));
       expect(mapper.map(sourceData)).toEqual(14);
     });
 
     test("Preprocessor with complex arguments", () => {
       let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args.yaml"));
       mapper.setPreprocessorManager(preprocessorManager);
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-args.yaml"));
       expect(mapper.map(sourceData)).toEqual(190);
     });
 
     test("Preprocessor with value and arguments", () => {
-      let mapper = new Agnese();
-      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-value-and-args.yaml"));
-      mapper.setPreprocessorManager(preprocessorManager);
+      let mapper = new Agnese(
+        Path.join(__dirname, "./MapInfoFiles/preprocessor-value-and-args.yaml"),
+        preprocessorManager
+      );
       expect(mapper.map(sourceData)).toEqual(190);
+    });
+
+    test("Preprocessor with fn", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(new MapInfo({
+        type: FieldType.Integer,
+        value: {fromPath: "characteristics.height"},
+        preprocessor: {fn: preprocessorManager.getPreprocessor("sum10")}
+      } as unknown as MapInfoBase, mapper));
+      expect(mapper.map(sourceData)).toEqual(186);
+    });
+
+    test("Error for empty preprocessor", () => {
+      try {
+        new Agnese(
+          Path.join(__dirname, "./MapInfoFiles/error-preprocessor-empty.json"),
+          preprocessorManager
+        );
+      }
+      catch (e) {
+        expect(e.message).toEqual("[Agnese] Preprocessor (preprocessor): must have a name or a function (in fn).");
+      }
+    });
+
+    test("Try use preprocessor without manager", () => {
+      try {
+        let mapper = new Agnese(
+          Path.join(__dirname, "./MapInfoFiles/preprocessor-value-and-args.yaml"),
+          //preprocessorManager
+        );
+        mapper.map(sourceData);
+      }
+      catch (e) {
+        expect(e.message).toEqual("[Agnese] Preprocessor (preprocessor): preprocessorManager is not defined.");
+      }
+    });
+
+    test("Try use non present preprocessor", () => {
+      let mapper = new Agnese(
+        Path.join(__dirname, "./MapInfoFiles/error-preprocessor-non-present.yaml"),
+        preprocessorManager
+      );
+      expect(mapper.map(sourceData)).toEqual(176);
     });
   });
 
@@ -336,13 +388,12 @@ describe("Switch", () => {
     expect(mapper.map(sourceData)).toEqual({});
   });
 
-  test("No cases", () => {
+  test("Error if no cases", () => {
     try {
-      let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/value-switch-no-cases.json"));
+      let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/error-value-switch-no-cases.json"));
       mapper.map(sourceData);
     }
     catch (e) {
-      console.log(e.message);
       expect(e.message).toEqual("[Agnese] ValueSwitch (switch): cases must be an array.");
     }
   });
