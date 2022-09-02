@@ -1,6 +1,6 @@
 {
   "name": "@wandeber/agnese",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "This project will help you to map data easily based on a configuration in JSON/YAML.",
   "license": "MIT",
   "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://wandeber.com)",
