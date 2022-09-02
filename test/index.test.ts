@@ -45,7 +45,7 @@ const sourceData = {
 const preprocessors: Preprocessors = {
   // eslint-disable-next-line no-magic-numbers
   sum10: (source: any, value: any) => value + 10,
-  sum: (source: any, ...args: any) => args.reduce((acc: any, value: any) => acc + value, 0)
+  sum: (source: any, value: any, ...args: any) => [value || 0, ...args].reduce((acc: any, value: any) => acc + value, 0)
 };
 
 const preprocessorManager = new PreprocessorManager(preprocessors);

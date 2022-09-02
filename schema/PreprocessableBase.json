@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "./PreprocessorBase.json",
-  "title": "PreprocessorBase",
-  "description": "PreprocessorBase",
+  "$id": "./PreprocessableBase.json",
+  "title": "PreprocessableBase",
+  "description": "PreprocessableBase",
   "type": "object",
   "properties": {
     "preprocessor": {

@@ -24,16 +24,14 @@ export class Preprocessor implements PreprocessorBase {
   fn: AnyFunction|null = null;
 
 
-  constructor(obj: any, public agnese: Agnese) {
+  constructor(protected obj: any, public agnese: Agnese) {
     if (typeof obj.fn === "function") {
       this.fn = obj.fn;
     }
-    else if (obj.name !== undefined) {
-      this.name = obj.name;
-    }
-    else {
+    else if (obj.name == undefined) {
       throw new Error("[Agnese] Preprocessor (preprocessor): must have a name or a function (in fn).");
     }
+    this.name = obj.name;
 
     this.getPreprocessor();
 
@@ -70,9 +68,7 @@ export class Preprocessor implements PreprocessorBase {
     // If a preprocessor is defined, it will be used in any case.
     if (typeof this.fn === "function") {
       let args = [];
-      if (value) {
-        args.push(value);
-      }
+      args.push(value);
       if (this.args) {
         args.push(...this.getArguments(sourceData));
       }

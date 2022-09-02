@@ -9,7 +9,10 @@
       "type": "string"
     },
     "args": {
-      "$ref": "./FieldValueBase.json"
+      "type": "array",
+      "items": {
+        "$ref": "./FieldValueBase.json"
+      }
     }
   }
 }

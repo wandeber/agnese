@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "./ItemBase.json",
-  "title": "ItemBase",
-  "description": "ItemBase",
+  "$id": "./FieldValueBase.json",
+  "title": "FieldValueBase",
+  "description": "FieldValueBase",
   "type": "object",
   "allOf": [
     {
