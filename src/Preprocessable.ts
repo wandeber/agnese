@@ -28,10 +28,12 @@ export class Preprocessor implements PreprocessorBase {
     if (typeof obj.fn === "function") {
       this.fn = obj.fn;
     }
-    else if (obj.name == undefined) {
+    else if (obj.name !== undefined) {
+      this.name = obj.name;
+    }
+    else {
       throw new Error("[Agnese] Preprocessor (preprocessor): must have a name or a function (in fn).");
     }
-    this.name = obj.name;
 
     this.getPreprocessor();
 
