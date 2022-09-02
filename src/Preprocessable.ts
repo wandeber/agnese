@@ -35,7 +35,7 @@ export class Preprocessor implements PreprocessorBase {
       throw new Error("[Agnese] Preprocessor (preprocessor): must have a name or a function (in fn).");
     }
 
-    this.getPreprocessor();
+    //this.getPreprocessor();
 
     if (Array.isArray(obj.args)) {
       this.args = obj.args.map((arg: any) => new FieldValue(arg, this.agnese));
@@ -48,10 +48,10 @@ export class Preprocessor implements PreprocessorBase {
     }
 
     if (typeof this.name === "string") {
-      if (!this.agnese.preprocessorManager) {
-        throw new Error("[Agnese] Preprocessor (preprocessor): preprocessorManager is not defined.");
+      if (this.agnese.preprocessorManager) {
+        this.fn = this.agnese.preprocessorManager.getPreprocessor(this.name);
       }
-      this.fn = this.agnese.preprocessorManager.getPreprocessor(this.name);
+      //throw new Error("[Agnese] Preprocessor (preprocessor): preprocessorManager is not defined.");
     }
 
     return this.fn;
@@ -67,6 +67,11 @@ export class Preprocessor implements PreprocessorBase {
 
   process(sourceData?: any, value?: any) {
     let result = value;
+
+    // To allow defining map info before preprocessor manager.
+    this.getPreprocessor();
+    
+
     // If a preprocessor is defined, it will be used in any case.
     if (typeof this.fn === "function") {
       let args = [];

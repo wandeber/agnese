@@ -207,6 +207,13 @@ describe("Base item/field features", () => {
       expect(mapper.map(sourceData)).toEqual(186);
     });
 
+    test("Preprocessor by name before map info", () => {
+      let mapper = new Agnese();
+      mapper.setMapInfo(Path.join(__dirname, "./MapInfoFiles/preprocessor-sum.json"));
+      mapper.setPreprocessorManager(preprocessorManager);
+      expect(mapper.map(sourceData)).toEqual(186);
+    });
+
     test("Preprocessor with hardcoded arguments", () => {
       let mapper = new Agnese();
       mapper.setPreprocessorManager(preprocessorManager);
