@@ -164,4 +164,4 @@ If you think on CSV as an object with one unique level, you can easily map any d
 
 ## License
 
-[MIT © Bernardo Alemán Siverio](https://github.com/wandeber/agnese/blob/main/LICENSE)
+Quara © 2024 by [Bernardo Alemán Siverio (wandeber)](https://github.com/wandeber) is licensed under [CC BY-ND 4.0](./LICENSE)
