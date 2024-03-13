@@ -1,7 +1,7 @@
 import * as Path from "path";
-import Agnese from "../src/index";
 import MapInfo, {MapInfoBase} from "../src/MapInfo";
 import PreprocessorManager, {Preprocessors} from "../src/PreprocessorManager";
+import Agnese from "../src/index";
 import {FieldType} from "../src/Types";
 
 
@@ -253,7 +253,7 @@ describe("Base item/field features", () => {
           preprocessorManager
         );
       }
-      catch (e) {
+      catch (e: any) {
         expect(e.message).toEqual("[Agnese] Preprocessor (preprocessor): must have a name or a function (in fn).");
       }
     });
@@ -266,7 +266,7 @@ describe("Base item/field features", () => {
         );
         mapper.map(sourceData);
       }
-      catch (e) {
+      catch (e: any) {
         expect(e.message).toEqual("[Agnese] Preprocessor (preprocessor): preprocessorManager is not defined.");
       }
     });
@@ -400,7 +400,7 @@ describe("Switch", () => {
       let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/error-value-switch-no-cases.json"));
       mapper.map(sourceData);
     }
-    catch (e) {
+    catch (e: any) {
       expect(e.message).toEqual("[Agnese] ValueSwitch (switch): cases must be an array.");
     }
   });
@@ -420,8 +420,8 @@ describe("Iterator", () => {
   test("Iterate to generate object", () => {
     let mapper = new Agnese(Path.join(__dirname, "./MapInfoFiles/iterate-to-generate-object.json"));
     expect(mapper.map(sourceData)).toEqual({
-      transformation1: {number: 0, transformationName: 'Super Saiyan'},
-      transformation2: {number: 1, transformationName: 'Super Saiyan II'}
+      transformation1: {number: 0, transformationName: "Super Saiyan"},
+      transformation2: {number: 1, transformationName: "Super Saiyan II"}
     });
   });
 
