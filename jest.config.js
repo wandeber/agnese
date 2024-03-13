@@ -19,8 +19,8 @@ module.exports = {
     "<rootDir>/src"
   ],
   moduleNameMapper: {
-    '^@app/(.*)$': '<rootDir>/src/$1',
-    '^@dependencies/(.*)$': '<rootDir>/other-dependencies/$1',
+    "^@app/(.*)$": "<rootDir>/src/$1",
+    "^@dependencies/(.*)$": "<rootDir>/other-dependencies/$1",
   },
   collectCoverageFrom: [
     "src/**/*.ts"
