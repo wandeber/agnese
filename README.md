@@ -1,4 +1,4 @@
-# [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wandeber/agnese/blob/main/LICENSE) [![version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese) [![ci](https://github.com/wandeber/agnese/actions/workflows/release-package.yml/badge.svg)](https://github.com/wandeber/agnese/actions) [![Coverage Status](https://coveralls.io/repos/github/wandeber/agnese/badge.svg)](https://coveralls.io/github/wandeber/agnese)
+# [Agnese](https://www.npmjs.com/package/agnese) - [![GitHub license](https://img.shields.io/badge/license-CC_BY--ND_4.0-blue.svg)](https://github.com/wandeber/agnese?tab=License-1-ov-file#readme) [![Version](https://img.shields.io/github/package-json/v/wandeber/agnese)](https://www.npmjs.com/package/agnese) [![size](https://img.shields.io/bundlephobia/min/agnese)](https://www.npmjs.com/package/agnese)
 
 Agnese is an object mapper that allows you to transform an object (or array) into another one with different structure.
 
@@ -164,4 +164,4 @@ If you think on CSV as an object with one unique level, you can easily map any d
 
 ## License
 
-Agnese © 2024 by [Bernardo Alemán Siverio (wandeber)](https://github.com/wandeber) is licensed under [CC BY-ND 4.0](./LICENSE)
+Agnese © 2020 by [Bernardo A. Siverio (wandeber)](https://github.com/wandeber) is licensed under [CC BY-ND 4.0](https://github.com/wandeber/agnese?tab=License-1-ov-file#readme)

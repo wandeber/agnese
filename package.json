@@ -7,7 +7,7 @@
   "homepage": "https://github.com/wandeber/agnese",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wandeber/agnese.git"
+    "url": "https://github.com/wandeber/agnese"
   },
   "bugs": {
     "url": "https://github.com/wandeber/agnese/issues"
@@ -42,6 +42,8 @@
   "files": [
     "dist/**/*",
     "other-dependencies/**/*",
+    "LICENSE",
+    "README.md",
     "schema/**/*"
   ],
   "devDependencies": {
