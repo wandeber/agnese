@@ -72,6 +72,7 @@
     "gen-dist-npm": "./scripts/generate-dist-npm.sh"
   },
   "engines": {
-    "node": ">= 20.12.2"
+    "node": ">=18.17.1",
+    "npm": ">=9.6.7"
   }
 }
