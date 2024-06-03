@@ -3,7 +3,8 @@ import Agnese from "./Agnese";
 import {FieldType} from "./Types";
 import MapProcess from "./MapProcess";
 
-const Quara = require("../other-dependencies/quara").default;
+// @ts-ignore
+import {Quara} from "quara";
 
 
 

@@ -46,6 +46,9 @@
     "README.md",
     "schema/**/*"
   ],
+  "dependencies": {
+    "quara": "^0.10.11"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
