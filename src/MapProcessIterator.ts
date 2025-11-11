@@ -1,9 +1,9 @@
-import FieldValue, {ITyped} from "./FieldValue";
-import MapField, {FieldBase} from "./MapField";
-import Agnese from "./Agnese";
-import {FieldType} from "./Types";
-import MapProcess from "./MapProcess";
-// @ts-ignore
+import FieldValue, {ITyped} from "./FieldValue.js";
+import MapField, {FieldBase} from "./MapField.js";
+import Agnese from "./Agnese.js";
+import {FieldType} from "./Types.js";
+import MapProcess from "./MapProcess.js";
+// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 

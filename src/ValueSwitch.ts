@@ -1,7 +1,7 @@
-import FieldValue, {FieldValueBase} from "./FieldValue";
-import ProcessIf, {ProcessIfBase} from "./ProcessIf";
-import Agnese from "./Agnese";
-import MapProcess from "./MapProcess";
+import FieldValue, {FieldValueBase} from "./FieldValue.js";
+import ProcessIf, {ProcessIfBase} from "./ProcessIf.js";
+import Agnese from "./Agnese.js";
+import MapProcess from "./MapProcess.js";
 
 
 

@@ -1,9 +1,9 @@
 {
   "name": "@wandeber/agnese",
-  "version": "0.6.4",
+  "version": "0.6.4-alpha",
   "description": "This project will help you to map data easily based on a configuration in JSON/YAML.",
   "license": "CC BY-ND 4.0",
-  "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://blog.wande.dev)",
+  "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://wandeber.com)",
   "homepage": "https://github.com/wandeber/agnese",
   "repository": {
     "type": "git",
@@ -37,8 +37,34 @@
     "open source",
     "agnese"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./dist/*": {
+      "types": "./dist/types/*.d.ts",
+      "require": "./dist/cjs/*.js",
+      "import": "./dist/esm/*.js",
+      "default": "./dist/esm/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "dist/*": [
+        "./dist/types/*"
+      ],
+      "*": [
+        "./dist/types/*"
+      ]
+    }
+  },
   "files": [
     "dist/**/*",
     "other-dependencies/**/*",
@@ -69,10 +95,13 @@
     "preversion": "npm run check",
     "check": "npm test && npm run lint",
     "clean": "rm -rf ./dist && rm -rf ./dist-npm",
-    "build-tsc": "npx tsc -p ./tsconfig.json",
+    "build-tsc": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "npx tsc -p ./tsconfig.cjs.json",
+    "build:esm": "npx tsc -p ./tsconfig.esm.json",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
-    "gen-dist-npm": "./scripts/generate-dist-npm.sh"
+    "gen-dist-npm": "./scripts/generate-dist-npm.sh",
+    "test-module-import": "node ./scripts/test-module-import.cjs"
   },
   "engines": {
     "node": ">=18.17.1",
