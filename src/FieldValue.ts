@@ -1,9 +1,9 @@
-import ValueSwitch, {ValueSwitchBase} from "./ValueSwitch";
-import Agnese from "./Agnese";
-import {FieldType} from "./Types";
-import MapProcess from "./MapProcess";
+import ValueSwitch, {ValueSwitchBase} from "./ValueSwitch.js";
+import Agnese from "./Agnese.js";
+import {FieldType} from "./Types.js";
+import MapProcess from "./MapProcess.js";
 
-// @ts-ignore
+// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 
