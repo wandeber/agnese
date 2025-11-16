@@ -1,6 +1,6 @@
 {
   "name": "@wandeber/agnese",
-  "version": "0.6.5",
+  "version": "0.6.6-alpha",
   "description": "This project will help you to map data easily based on a configuration in JSON/YAML.",
   "license": "CC BY-ND 4.0",
   "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://wandeber.com)",
@@ -73,7 +73,7 @@
     "schema/**/*"
   ],
   "dependencies": {
-    "quara": "^0.10.12"
+    "quara": "0.10.13-alpha"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
