@@ -22,7 +22,7 @@ For more complex needs, you can create your own preprocessors and point to them 
 
 - Convert source data to objects, arrays, strings or simple data based on mapping configuration.
 - Read mapping configuration from JSON file.
-- Conditional fields/items powered by Quara*.
+- Conditional fields/items powered by Quara.
 - Array iteration.
 - Possibility of define a default value for a field.
 - Assign values by their paths in source data.
@@ -30,8 +30,6 @@ For more complex needs, you can create your own preprocessors and point to them 
 - Use of custom functions to preprocess values before assign them.
 - Values from conditional path (switch).
 - YAML optional support.
-
-> *Quara is a simple JavaScript interpreted language that will be available soon as a separate module.
 
 ## Installation
 

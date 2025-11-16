@@ -19,8 +19,7 @@ export default {
     "<rootDir>/src"
   ],
   moduleNameMapper: {
-    "^@app/(.*)$": "<rootDir>/src/$1",
-    "^@dependencies/(.*)$": "<rootDir>/other-dependencies/$1"
+    "^@app/(.*)$": "<rootDir>/src/$1"
   },
   resolver: "<rootDir>/jest.resolver.cjs",
   collectCoverageFrom: [

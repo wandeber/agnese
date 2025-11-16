@@ -20,10 +20,9 @@
     "lib": ["ES2019", "DOM"],
     "baseUrl": "./src",
     "paths": {
-      "@dependencies/*": ["../node_modules/*", "../other-dependencies/*"],
       "@app/*": ["./*"],
       "*": ["./*", "../test/*"]
     }
   },
-  "include": ["./src/**/*", "./other-dependencies/quara.js"]
+  "include": ["./src/**/*"]
 }

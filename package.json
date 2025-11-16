@@ -47,7 +47,6 @@
   },
   "files": [
     "dist/**/*",
-    "other-dependencies/**/*",
     "LICENSE",
     "README.md",
     "schema/**/*"
