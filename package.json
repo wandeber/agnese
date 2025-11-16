@@ -37,33 +37,17 @@
     "open source",
     "agnese"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/esm/index.js"
-    },
-    "./dist/*": {
-      "types": "./dist/types/*.d.ts",
-      "require": "./dist/cjs/*.js",
-      "import": "./dist/esm/*.js",
-      "default": "./dist/esm/*.js"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     },
     "./package.json": "./package.json"
-  },
-  "typesVersions": {
-    "*": {
-      "dist/*": [
-        "./dist/types/*"
-      ],
-      "*": [
-        "./dist/types/*"
-      ]
-    }
   },
   "files": [
     "dist/**/*",
@@ -83,6 +67,7 @@
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
+    "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
   "optionalDependencies": {
@@ -90,14 +75,11 @@
   },
   "scripts": {
     "rebuild": "npm run clean && npm run build",
-    "build": "npm run build-tsc",
+    "build": "tsup",
     "build-prod": "npm run build && npm run check",
     "preversion": "npm run check",
     "check": "npm test && npm run lint",
     "clean": "rm -rf ./dist && rm -rf ./dist-npm",
-    "build-tsc": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "npx tsc -p ./tsconfig.cjs.json",
-    "build:esm": "npx tsc -p ./tsconfig.esm.json",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
     "gen-dist-npm": "./scripts/generate-dist-npm.sh",
