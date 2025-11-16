@@ -75,7 +75,7 @@
   },
   "scripts": {
     "rebuild": "npm run clean && npm run build",
-    "build": "tsup",
+    "build": "node ./scripts/build.cjs",
     "build-prod": "npm run build && npm run check",
     "preversion": "npm run check",
     "check": "npm test && npm run lint",

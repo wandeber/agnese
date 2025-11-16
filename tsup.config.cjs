@@ -1,6 +1,4 @@
-import {defineConfig} from "tsup";
-
-export default defineConfig({
+const tsupConfig = {
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
   sourcemap: true,
@@ -16,4 +14,6 @@ export default defineConfig({
       js: format === "esm" ? ".mjs" : ".js"
     };
   }
-});
+};
+
+module.exports = tsupConfig;
