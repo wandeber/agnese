@@ -1,4 +1,4 @@
-import {ItemBase, MapItem} from "./MapField";
+import {ItemBase, MapItem} from "./MapField.js";
 
 
 

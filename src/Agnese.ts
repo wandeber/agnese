@@ -1,7 +1,7 @@
 import * as FS from "fs";
-import MapInfo, {MapInfoBase} from "./MapInfo";
-import PreprocessorManager, {Preprocessors} from "./PreprocessorManager";
-import {FieldType} from "./Types";
+import MapInfo, {MapInfoBase} from "./MapInfo.js";
+import PreprocessorManager, {Preprocessors} from "./PreprocessorManager.js";
+import {FieldType} from "./Types.js";
 
 
 

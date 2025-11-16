@@ -1,4 +1,14 @@
-// Extensions .js in order to support browsers.
-import Agnese from "./Agnese";
+// Using .js extension preserves compatibility with NodeNext resolution.
+import Agnese from "./Agnese.js";
 
-export = Agnese;
+export default Agnese;
+export {Agnese};
+
+/**
+ * Preserve legacy CommonJS consumption (`require("agnese")`).
+ */
+if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
+  module.exports = Agnese;
+  module.exports.default = Agnese;
+  module.exports.Agnese = Agnese;
+}

@@ -1,6 +1,6 @@
-import FieldValue, {FieldValueBase} from "./FieldValue";
-import Agnese from "./Agnese";
-import {AnyFunction} from "./PreprocessorManager";
+import FieldValue, {FieldValueBase} from "./FieldValue.js";
+import Agnese from "./Agnese.js";
+import {AnyFunction} from "./PreprocessorManager.js";
 
 
 

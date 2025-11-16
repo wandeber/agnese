@@ -1,8 +1,8 @@
-import FieldValue, {FieldValueBase} from "./FieldValue";
-import Agnese from "./Agnese";
-import MapProcess from "./MapProcess";
+import FieldValue, {FieldValueBase} from "./FieldValue.js";
+import Agnese from "./Agnese.js";
+import MapProcess from "./MapProcess.js";
 
-// @ts-ignore
+// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 

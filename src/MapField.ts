@@ -1,9 +1,9 @@
-import FieldValue, {FieldValueBase, ITyped} from "./FieldValue";
-import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator";
-import Preprocessable, {PreprocessableBase} from "./Preprocessable";
-import ProcessIf, {ProcessIfBase} from "./ProcessIf";
-import Agnese from "./Agnese";
-import {FieldType} from "./Types";
+import FieldValue, {FieldValueBase, ITyped} from "./FieldValue.js";
+import MapProcessIterator, {MapProcessIteratorBase} from "./MapProcessIterator.js";
+import Preprocessable, {PreprocessableBase} from "./Preprocessable.js";
+import ProcessIf, {ProcessIfBase} from "./ProcessIf.js";
+import Agnese from "./Agnese.js";
+import {FieldType} from "./Types.js";
 
 
 
