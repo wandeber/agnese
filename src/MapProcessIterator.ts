@@ -3,7 +3,6 @@ import MapField, {FieldBase} from "./MapField.js";
 import Agnese from "./Agnese.js";
 import {FieldType} from "./Types.js";
 import MapProcess from "./MapProcess.js";
-// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 
@@ -83,7 +82,7 @@ export default class MapProcessIterator implements MapProcessIteratorBase, MapPr
         let value;
         if (this.do !== undefined && (value = this.do.map(mergedDataSource)) !== undefined) {
           if (this.type === FieldType.Object) {
-            let propName = new Quara(this.targetKeyName, mergedDataSource).run();
+            const propName = new Quara(this.targetKeyName, mergedDataSource).run() as string|number;
             result[propName] = value;
           }
           else if (this.type === FieldType.Array) {
