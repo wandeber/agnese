@@ -54,6 +54,7 @@ const packageJson = JSON.parse(fs.readFileSync(rootPackagePath, "utf8"));
 const sandboxPackageJson = {
   name: "agnese",
   version: packageJson.version,
+  type: packageJson.type,
   main: packageJson.main,
   module: packageJson.module,
   types: packageJson.types,

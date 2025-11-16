@@ -1,6 +1,6 @@
 {
   "name": "@wandeber/agnese",
-  "version": "0.6.5",
+  "version": "0.6.6-alpha",
   "description": "This project will help you to map data easily based on a configuration in JSON/YAML.",
   "license": "CC BY-ND 4.0",
   "author": "Bernardo A. Siverio [wandeber] <berthewanderer@gmail.com> (https://wandeber.com)",
@@ -37,43 +37,22 @@
     "open source",
     "agnese"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
+  "type": "module",
+  "main": "./dist/Agnese.cjs",
+  "module": "./dist/Agnese.js",
+  "types": "./dist/Agnese.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/esm/index.js"
-    },
-    "./dist/*": {
-      "types": "./dist/types/*.d.ts",
-      "require": "./dist/cjs/*.js",
-      "import": "./dist/esm/*.js",
-      "default": "./dist/esm/*.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "typesVersions": {
-    "*": {
-      "dist/*": [
-        "./dist/types/*"
-      ],
-      "*": [
-        "./dist/types/*"
-      ]
-    }
+    "import": "./dist/Agnese.js",
+    "require": "./dist/Agnese.cjs"
   },
   "files": [
     "dist/**/*",
-    "other-dependencies/**/*",
     "LICENSE",
     "README.md",
     "schema/**/*"
   ],
   "dependencies": {
-    "quara": "^0.10.12"
+    "quara": "0.10.13-alpha"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
@@ -83,6 +62,7 @@
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
+    "tsup": "^8.5.1",
     "typescript": "^5.4.5"
   },
   "optionalDependencies": {
@@ -90,14 +70,12 @@
   },
   "scripts": {
     "rebuild": "npm run clean && npm run build",
-    "build": "npm run build-tsc",
+    "build": "npm run clean && npm run build:tsup",
     "build-prod": "npm run build && npm run check",
     "preversion": "npm run check",
     "check": "npm test && npm run lint",
     "clean": "rm -rf ./dist && rm -rf ./dist-npm",
-    "build-tsc": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "npx tsc -p ./tsconfig.cjs.json",
-    "build:esm": "npx tsc -p ./tsconfig.esm.json",
+    "build:tsup": "tsup --config tsup.config.cjs",
     "lint": "npx eslint ./src/**/*.ts",
     "test": "npx jest --detectOpenHandles --forceExit --coverage --verbose",
     "gen-dist-npm": "./scripts/generate-dist-npm.sh",
