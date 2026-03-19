@@ -1,8 +1,6 @@
 import FieldValue, {FieldValueBase} from "./FieldValue.js";
 import Agnese from "./Agnese.js";
 import MapProcess from "./MapProcess.js";
-
-// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 
@@ -37,13 +35,13 @@ export default class ProcessIf implements ProcessIfBase, MapProcess {
 
   process(sourceData: any): boolean {
     if (this.exists) {
-      return FieldValue.getValueFromPath(sourceData, this.exists);
+      return Boolean(FieldValue.getValueFromPath(sourceData, this.exists));
     }
     else if (this.quara) {
-      return new Quara(this.quara, sourceData).run();
+      return Boolean(new Quara(this.quara, sourceData).run());
     }
     else if (this.value) {
-      return this.value.process(sourceData);
+      return Boolean(this.value.process(sourceData));
     }
     return false; // TODO: Think about this default return.
   }

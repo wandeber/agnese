@@ -3,7 +3,6 @@ import Agnese from "./Agnese.js";
 import {FieldType} from "./Types.js";
 import MapProcess from "./MapProcess.js";
 
-// @ts-expect-error: quara has no TypeScript declarations
 import {Quara} from "quara";
 
 

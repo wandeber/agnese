@@ -2,7 +2,6 @@
 
 mkdir -p dist-npm
 cp -rf dist dist-npm/
-cp -rf other-dependencies dist-npm/
 cp -rf schema dist-npm/
 cp -f package*.json dist-npm/
 cp -f .npmrc dist-npm/
